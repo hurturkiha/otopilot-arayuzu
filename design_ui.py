@@ -427,6 +427,34 @@ class Ui_MainWindow(object):
         self.bt_clearTrack.setObjectName("bt_clearTrack")
         self.tw_waypoints = QtWidgets.QTableWidget(self.tab_planningMap)
         self.tw_waypoints.setGeometry(QtCore.QRect(744, 220, 661, 491))
+        self.tw_waypoints.setStyleSheet("QTableCornerButton {\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: rgb(238, 238, 236);\n"
+"    padding: 2px;\n"
+"    font-size: 9pt;\n"
+"    border-style: none;\n"
+"    border-bottom: 1px solid #fffff8;\n"
+"    border-right: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:horizontal\n"
+"{\n"
+"    border-top: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:vertical\n"
+"{\n"
+"    border-left: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QTableWidget\n"
+"{\n"
+"    selection-background-color: rgba(255, 255, 255, 0);\n"
+"    selection-color: black;\n"
+"}")
         self.tw_waypoints.setObjectName("tw_waypoints")
         self.tw_waypoints.setColumnCount(0)
         self.tw_waypoints.setRowCount(0)
@@ -669,7 +697,7 @@ class Ui_MainWindow(object):
         self.lb_camera.setObjectName("lb_camera")
         self.cb_resolution = QtWidgets.QComboBox(self.tab_camera)
         self.cb_resolution.setEnabled(True)
-        self.cb_resolution.setGeometry(QtCore.QRect(1270, 90, 139, 29))
+        self.cb_resolution.setGeometry(QtCore.QRect(1270, 270, 139, 29))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -706,7 +734,7 @@ class Ui_MainWindow(object):
         self.cb_resolution.addItem("")
         self.cb_resolution.addItem("")
         self.bt_cameraStart = QtWidgets.QPushButton(self.tab_camera)
-        self.bt_cameraStart.setGeometry(QtCore.QRect(1269, 130, 141, 51))
+        self.bt_cameraStart.setGeometry(QtCore.QRect(1269, 310, 141, 51))
         self.bt_cameraStart.setMinimumSize(QtCore.QSize(0, 32))
         font = QtGui.QFont()
         font.setFamily("Arial")
@@ -1001,11 +1029,12 @@ class Ui_MainWindow(object):
         self.lb_status.setFont(font)
         self.lb_status.setStyleSheet("QLabel {\n"
 "    font: 9pt \"Ubuntu\";\n"
-"    color: blue;\n"
+"    color: red;\n"
 "    background-color: #ECECEC;\n"
 "    border-right: 1px solid #ababab;\n"
 "    border-top: 1px solid #ababab;\n"
 "}")
+        self.lb_status.setText("")
         self.lb_status.setAlignment(QtCore.Qt.AlignCenter)
         self.lb_status.setObjectName("lb_status")
         self.bl_statusBar.addWidget(self.lb_status)
@@ -1029,7 +1058,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tw_menu.setCurrentIndex(0)
+        self.tw_menu.setCurrentIndex(1)
         self.sw_connectionCB.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1110,6 +1139,5 @@ class Ui_MainWindow(object):
         self.cb_baudRate.setItemText(2, _translate("MainWindow", "115200"))
         self.cb_simulation.setText(_translate("MainWindow", "Simülasyon"))
         self.lb_teamName.setText(_translate("MainWindow", "Hürtürk İHA Takımı"))
-        self.lb_status.setText(_translate("MainWindow", "Yarışmaya kalan süre: 200 gün 5 saat"))
         self.lb_date.setText(_translate("MainWindow", "31 Ocak 2021 - 12:12:12"))
 import icon_rc

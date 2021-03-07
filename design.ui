@@ -37,7 +37,7 @@
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_mainScreen">
      <attribute name="title">
@@ -971,6 +971,36 @@ QPushButton:active {
         <height>491</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QTableCornerButton {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+QHeaderView::section {
+    background-color: rgb(238, 238, 236);
+    padding: 2px;
+    font-size: 9pt;
+    border-style: none;
+    border-bottom: 1px solid #fffff8;
+    border-right: 1px solid #fffff8;
+}
+
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid #fffff8;
+}
+
+QHeaderView::section:vertical
+{
+    border-left: 1px solid #fffff8;
+}
+
+QTableWidget
+{
+	selection-background-color: rgba(255, 255, 255, 0);
+	selection-color: black;
+}</string>
+      </property>
      </widget>
      <widget class="QWidget" name="layoutWidget_2">
       <property name="geometry">
@@ -1471,7 +1501,7 @@ QPushButton:active {
       <property name="geometry">
        <rect>
         <x>1270</x>
-        <y>90</y>
+        <y>270</y>
         <width>139</width>
         <height>29</height>
        </rect>
@@ -1553,7 +1583,7 @@ QComboBox::drop-down {
       <property name="geometry">
        <rect>
         <x>1269</x>
-        <y>130</y>
+        <y>310</y>
         <width>141</width>
         <height>51</height>
        </rect>
@@ -2093,14 +2123,14 @@ background-color : rgb(239, 41, 41);
        <property name="styleSheet">
         <string notr="true">QLabel {
 	font: 9pt &quot;Ubuntu&quot;;
-	color: blue;
+	color: red;
 	background-color: #ECECEC;
 	border-right: 1px solid #ababab;
 	border-top: 1px solid #ababab;
 }</string>
        </property>
        <property name="text">
-        <string>Yarışmaya kalan süre: 200 gün 5 saat</string>
+        <string/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

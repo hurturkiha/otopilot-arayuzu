@@ -1,0 +1,36 @@
+{
+  "parametre_ailesi1": {
+    "parametre": {
+      "aciklama": "aaa",
+      "deger": "aaaa",
+      "varsayilan_deger": "aaa"
+    },
+    "parametre2": {
+      "aciklama": "aaa",
+      "deger": "aaaa",
+      "varsayilan_deger": "aaa"
+    },
+    "parametre3": {
+      "aciklama": "aaa",
+      "deger": "aaaa",
+      "varsayilan_deger": "aaa"
+    }
+  },
+  "parametre_ailesi2": {
+    "parametre": {
+      "aciklama": "aaa",
+      "deger": "aaaa",
+      "varsayilan_deger": "aaa"
+    },
+    "parametre2": {
+      "aciklama": "aaa",
+      "deger": "aaaa",
+      "varsayilan_deger": "aaa"
+    },
+    "parametre3": {
+      "aciklama": "aaa",
+      "deger": "aaaa",
+      "varsayilan_deger": "aaa"
+    }
+  }
+}

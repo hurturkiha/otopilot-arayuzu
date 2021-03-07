@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1419</width>
+    <height>731</height>
+   </rect>
+  </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Highlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="0">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="HighlightedText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="0">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Highlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="0">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="HighlightedText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="0">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Highlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>145</red>
+        <green>145</green>
+        <blue>145</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="HighlightedText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="0">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="lb_search">
+   <property name="geometry">
+    <rect>
+     <x>12</x>
+     <y>20</y>
+     <width>71</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Arama:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="le_search">
+   <property name="geometry">
+    <rect>
+     <x>65</x>
+     <y>20</y>
+     <width>221</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Highlight">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="HighlightedText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Highlight">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="HighlightedText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="Highlight">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>145</red>
+         <green>145</green>
+         <blue>145</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="HighlightedText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="lw_parameterFamily">
+   <property name="geometry">
+    <rect>
+     <x>8</x>
+     <y>60</y>
+     <width>278</width>
+     <height>656</height>
+    </rect>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tw_parameters">
+   <property name="geometry">
+    <rect>
+     <x>295</x>
+     <y>60</y>
+     <width>1114</width>
+     <height>656</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget{
+	border-top: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+	outline: 0;
+}
+QTableCornerButton {
+    background-color: rgba(255, 255, 255, 0);
+}
+QTableWidget::item{
+	border-left: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+}
+
+QTableWidget::item:focus{
+	background-color: rgba(255, 0, 0, 0.1);
+	color: black;
+}
+
+QHeaderView::section {
+    background-color: rgb(238, 238, 236);
+    padding: 4px;
+    font-size: 9pt;
+	height: 18px;
+    border-style: none;
+    border-bottom: 1px solid #fffff8;
+	border-left: 1px solid lightgray;
+}
+
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid #fffff8;
+}
+
+QScrollBar:vertical {
+    border: none;
+    background:white;
+	border-radius: 12px;
+    width:6px;
+    margin: 0px 0px 0px 0px;
+}
+QScrollBar::handle:vertical {
+   background: gray;
+    min-height: 0px;
+	border-radius: 12px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAsNeeded</enum>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::SingleSelection</enum>
+   </property>
+   <property name="showGrid">
+    <bool>false</bool>
+   </property>
+   <property name="rowCount">
+    <number>6</number>
+   </property>
+   <attribute name="horizontalHeaderHighlightSections">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="verticalHeaderHighlightSections">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="verticalHeaderStretchLastSection">
+    <bool>false</bool>
+   </attribute>
+   <row>
+    <property name="text">
+     <string>New Row</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>New Row</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>New Row</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>New Row</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>New Row</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>New Row</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Parametre</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Değer</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Açıklama</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="bt_resetParameters">
+   <property name="geometry">
+    <rect>
+     <x>296</x>
+     <y>20</y>
+     <width>171</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	box-shadow:inset 0px 1px 0px 0px #f29c93;
+	background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+	background-color: rgb(0,0,0);
+	border-radius:6px;
+	border:1px solid rgb(0,0,0);
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+QPushButton:hover {
+	background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+	background-color:  rgb(50,50,50);
+}
+QPushButton:active {
+	position:relative;
+	top:1px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Parametreleri Sıfırla</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="bt_saveParameters">
+   <property name="geometry">
+    <rect>
+     <x>479</x>
+     <y>20</y>
+     <width>171</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	box-shadow:inset 0px 1px 0px 0px #f29c93;
+	background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+	background-color: rgb(0,0,0);
+	border-radius:6px;
+	border:1px solid rgb(0,0,0);
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+QPushButton:hover {
+	background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+	background-color:  rgb(50,50,50);
+}
+QPushButton:active {
+	position:relative;
+	top:1px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Parametreleri Kaydet</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="bt_loadParameters">
+   <property name="geometry">
+    <rect>
+     <x>659</x>
+     <y>20</y>
+     <width>231</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	box-shadow:inset 0px 1px 0px 0px #f29c93;
+	background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+	background-color: rgb(0,0,0);
+	border-radius:6px;
+	border:1px solid rgb(0,0,0);
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+QPushButton:hover {
+	background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+	background-color:  rgb(50,50,50);
+}
+QPushButton:active {
+	position:relative;
+	top:1px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Parametreleri Dosyadan Yükle</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

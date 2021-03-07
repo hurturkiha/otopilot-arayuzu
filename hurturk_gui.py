@@ -3,7 +3,7 @@ import datetime
 
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import *
-from PyQt5 import QtTest
+from PyQt5 import QtTest, QtCore
 from PyQt5.QtCore import *
 from pyqtlet import *
 
@@ -77,6 +77,8 @@ class HurturkGui(QMainWindow):
         show_time_timer.start(1000)
         self.show_time()
 
+        self.create_table()
+
         self.create_planning_map()
         self.ui.tw_menu.currentChanged.connect(self.changed_tab)
 
@@ -107,6 +109,28 @@ class HurturkGui(QMainWindow):
         elif index == 1:
             self.ui.vbl_planningMap.addWidget(self.planning_map_widget)
             self.planning_map.clicked.connect(self.add_marker)
+
+    def create_table(self):
+        self.ui.tw_waypoints.horizontalHeader().setVisible(True)
+        self.ui.tw_waypoints.verticalHeader().setVisible(True)
+
+        self.ui.tw_waypoints.setRowCount(1)
+        self.ui.tw_waypoints.setColumnCount(9)
+
+        self.ui.tw_waypoints.setHorizontalHeaderLabels(
+            ['Komut', 'Param1', 'Param2', 'Param3', 'Param4',
+             'Enlem', 'Boylam', 'İrtifa', 'Sil?'])
+
+        self.ui.tw_waypoints.setColumnWidth(0, 110)
+        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
+        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(2, QHeaderView.Stretch)
+        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(3, QHeaderView.Stretch)
+        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(4, QHeaderView.Stretch)
+        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(5, QHeaderView.Stretch)
+        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(6, QHeaderView.Stretch)
+        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(7, QHeaderView.Stretch)
+        self.ui.tw_waypoints.setColumnWidth(8, 50)
+        self.ui.tw_waypoints.setItemDelegate(AlignDelegate())
 
     def show_time(self):
         now_time = datetime.datetime.now()
@@ -165,3 +189,9 @@ class HurturkGui(QMainWindow):
         delta = QPoint(event.globalPos() - self.oldPosition)  # x ve y ekseninde kaydırılan mesafe
         self.window().move(self.window().x() + delta.x(), self.window().y() + delta.y())  # başlangıç noktası kaydırılır
         self.oldPosition = event.globalPos()
+
+
+class AlignDelegate(QItemDelegate):
+    def paint(self, painter, option, index):
+        option.displayAlignment = QtCore.Qt.AlignCenter
+        QItemDelegate.paint(self, painter, option, index)
