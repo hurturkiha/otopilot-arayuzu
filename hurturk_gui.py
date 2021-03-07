@@ -5,12 +5,12 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import *
 from PyQt5 import QtTest
 from PyQt5.QtCore import *
+from pyqtlet import *
 
 from parameters_widget import ParameterWidget
 
 import splash_design_ui
 import design_ui
-
 
 
 class SplashScreen(QMainWindow):
@@ -77,9 +77,36 @@ class HurturkGui(QMainWindow):
         show_time_timer.start(1000)
         self.show_time()
 
+        self.create_planning_map()
+        self.ui.tw_menu.currentChanged.connect(self.changed_tab)
+
     ###############################################
-    ##          PENCERE ZAMAN GÖSTERGESİ         ##
+    ##            HARİTA FONKSİYONLARI           ##
     ###############################################
+
+    def create_planning_map(self):
+        print("aaaa")
+        self.planning_map_widget = MapWidget()
+        self.ui.vbl_miniMap.addWidget(self.planning_map_widget)
+
+        self.planning_map = L.map(self.planning_map_widget)
+        self.planning_map.setView([40.215725, 29.080278], 18)
+
+        self.tile_layer = L.tileLayer(
+            'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
+        self.tile_layer.addTo(self.planning_map)
+
+    ###############################################
+    ##             GUI FONKSİYONLARI             ##
+    ###############################################
+
+    def changed_tab(self, index):
+        if index == 0:
+            self.ui.vbl_miniMap.addWidget(self.planning_map_widget)
+            self.planning_map.disconnect()
+        elif index == 1:
+            self.ui.vbl_planningMap.addWidget(self.planning_map_widget)
+            self.planning_map.clicked.connect(self.add_marker)
 
     def show_time(self):
         now_time = datetime.datetime.now()
@@ -93,6 +120,13 @@ class HurturkGui(QMainWindow):
 
         self.ui.lb_status.setText(
             f"Yarışmaya <b>{delta1.days} gün</b>, kavramsal tasarım rapor sonucunun açıklanmasına ise <b>{delta2.days} gün</b> kaldı.")
+
+    ###############################################
+    ##           HARİTA FONKSİYONLARI            ##
+    ###############################################
+
+    def add_marker(self):
+        pass
 
     ###############################################
     ##         PENCERE KONTROL DÜĞMELERİ         ##
