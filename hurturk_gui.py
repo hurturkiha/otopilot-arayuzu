@@ -28,6 +28,7 @@ class SplashScreen(QMainWindow):
 
     def progress_animation(self):
         """Arayüzün yükleme animasyonunu gerçekleştirir ve arayüzü oluşturur."""
+
         if self.progress_value <= 100:
             self.ui.progressBar.setValue(self.progress_value)
             self.progress_value += 10
@@ -51,3 +52,21 @@ class HurturkGui(QMainWindow):
 
         self.ui = design_ui.Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.oldPosition = self.window().pos()
+
+    def mousePressEvent(self, event):
+        """
+        Pencereye tıklanınca taşımak için kordinatı alır.
+        """
+
+        self.oldPosition = event.globalPos()
+
+    def mouseMoveEvent(self, event):
+        """
+        Pencere hareketini gerçekleştirir.
+        """
+
+        delta = QPoint(event.globalPos() - self.oldPosition)  # x ve y ekseninde kaydırılan mesafe
+        self.window().move(self.window().x() + delta.x(), self.window().y() + delta.y())  # başlangıç noktası kaydırılır
+        self.oldPosition = event.globalPos()
