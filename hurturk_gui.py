@@ -1,4 +1,5 @@
 # created by Hurturk UAV Team (2021)
+import datetime
 
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import *
@@ -66,8 +67,32 @@ class HurturkGui(QMainWindow):
         # self.ui.bt_maximize.clicked.connect(self.maximize_window)
         self.ui.bt_minimize.clicked.connect(self.minimize_window)
 
+        # Parametre sekmesi widget olarak eklenir.
         self.parameters_widget = ParameterWidget()
         self.ui.vl_parameters.addWidget(self.parameters_widget)
+
+        # Ekranda zaman göstermek üzere timer oluşturulur.
+        show_time_timer = QTimer(self)
+        show_time_timer.timeout.connect(self.show_time)
+        show_time_timer.start(1000)
+        self.show_time()
+
+    ###############################################
+    ##          PENCERE ZAMAN GÖSTERGESİ         ##
+    ###############################################
+
+    def show_time(self):
+        now_time = datetime.datetime.now()
+        self.ui.lb_date.setText(now_time.strftime("%d %b %Y %H:%M:%S"))
+
+        comp_date = datetime.datetime(2021, 9, 13)
+        delta1 = comp_date - now_time
+
+        report_result_date = datetime.datetime(2021, 3, 15)
+        delta2 = report_result_date - now_time
+
+        self.ui.lb_status.setText(
+            f"Yarışmaya <b>{delta1.days} gün</b>, kavramsal tasarım rapor sonucunun açıklanmasına ise <b>{delta2.days} gün</b> kaldı.")
 
     ###############################################
     ##         PENCERE KONTROL DÜĞMELERİ         ##
