@@ -5,8 +5,11 @@ from PyQt5.QtWidgets import *
 from PyQt5 import QtTest
 from PyQt5.QtCore import *
 
+from parameters_widget import ParameterWidget
+
 import splash_design_ui
 import design_ui
+
 
 
 class SplashScreen(QMainWindow):
@@ -53,12 +56,18 @@ class HurturkGui(QMainWindow):
         self.ui = design_ui.Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # Başlangıçta ana sayfadan başlamayı sağlar.
+        self.ui.tw_menu.setCurrentIndex(0)
+
         self.oldPosition = self.window().pos()
 
-        # Pencre kontrol düğmelerinin tetikleyeceği fonksiyonlar.
+        # Pencere kontrol düğmelerinin tetikleyeceği fonksiyonları ayarlar.
         self.ui.bt_close.clicked.connect(self.close_window)
         # self.ui.bt_maximize.clicked.connect(self.maximize_window)
         self.ui.bt_minimize.clicked.connect(self.minimize_window)
+
+        self.parameters_widget = ParameterWidget()
+        self.ui.vl_parameters.addWidget(self.parameters_widget)
 
     ###############################################
     ##         PENCERE KONTROL DÜĞMELERİ         ##

@@ -19,14 +19,14 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
-        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(-2, -3, 1431, 800))
-        self.tabWidget.setStyleSheet("QTabBar::tab { \n"
+        self.tw_menu = QtWidgets.QTabWidget(self.centralwidget)
+        self.tw_menu.setGeometry(QtCore.QRect(-2, -3, 1431, 802))
+        self.tw_menu.setStyleSheet("QTabBar::tab { \n"
 "    height: 40px; \n"
 "    width: 150px;  \n"
 "    font: 12pt \"Ubuntu\";\n"
 "}")
-        self.tabWidget.setObjectName("tabWidget")
+        self.tw_menu.setObjectName("tw_menu")
         self.tab_mainScreen = QtWidgets.QWidget()
         self.tab_mainScreen.setObjectName("tab_mainScreen")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.tab_mainScreen)
@@ -392,7 +392,7 @@ class Ui_MainWindow(object):
         self.lb_airSpeedIndicatorTick_3.setPixmap(QtGui.QPixmap(":/hud/icons/speed-indicator-tick.png"))
         self.lb_airSpeedIndicatorTick_3.setScaledContents(True)
         self.lb_airSpeedIndicatorTick_3.setObjectName("lb_airSpeedIndicatorTick_3")
-        self.tabWidget.addTab(self.tab_mainScreen, "")
+        self.tw_menu.addTab(self.tab_mainScreen, "")
         self.tab_planningMap = QtWidgets.QWidget()
         self.tab_planningMap.setObjectName("tab_planningMap")
         self.verticalLayoutWidget_3 = QtWidgets.QWidget(self.tab_planningMap)
@@ -629,7 +629,7 @@ class Ui_MainWindow(object):
         self.bt_complete.setObjectName("bt_complete")
         self.fl_geofence.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.bt_complete)
         self.layoutWidget1 = QtWidgets.QWidget(self.tab_planningMap)
-        self.layoutWidget1.setGeometry(QtCore.QRect(1095, 143, 317, 27))
+        self.layoutWidget1.setGeometry(QtCore.QRect(1095, 143, 301, 27))
         self.layoutWidget1.setObjectName("layoutWidget1")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.layoutWidget1)
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -650,10 +650,16 @@ class Ui_MainWindow(object):
         self.le_defaultAlt.setMaximumSize(QtCore.QSize(150, 16777215))
         self.le_defaultAlt.setObjectName("le_defaultAlt")
         self.horizontalLayout_3.addWidget(self.le_defaultAlt)
-        self.tabWidget.addTab(self.tab_planningMap, "")
+        self.tw_menu.addTab(self.tab_planningMap, "")
         self.tab_parameters = QtWidgets.QWidget()
         self.tab_parameters.setObjectName("tab_parameters")
-        self.tabWidget.addTab(self.tab_parameters, "")
+        self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.tab_parameters)
+        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(0, -1, 1423, 724))
+        self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
+        self.vl_parameters = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
+        self.vl_parameters.setContentsMargins(0, 0, 0, 0)
+        self.vl_parameters.setObjectName("vl_parameters")
+        self.tw_menu.addTab(self.tab_parameters, "")
         self.tab_camera = QtWidgets.QWidget()
         self.tab_camera.setObjectName("tab_camera")
         self.lb_camera = QtWidgets.QLabel(self.tab_camera)
@@ -735,9 +741,9 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.bt_cameraStart.setObjectName("bt_cameraStart")
-        self.tabWidget.addTab(self.tab_camera, "")
+        self.tw_menu.addTab(self.tab_camera, "")
         self.bt_connect = QtWidgets.QPushButton(self.centralwidget)
-        self.bt_connect.setGeometry(QtCore.QRect(1151, 5, 121, 25))
+        self.bt_connect.setGeometry(QtCore.QRect(1120, 5, 121, 25))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -770,13 +776,13 @@ class Ui_MainWindow(object):
         self.bt_connect.setFlat(False)
         self.bt_connect.setObjectName("bt_connect")
         self.sw_connectionCB = QtWidgets.QStackedWidget(self.centralwidget)
-        self.sw_connectionCB.setGeometry(QtCore.QRect(845, 3, 291, 29))
+        self.sw_connectionCB.setGeometry(QtCore.QRect(840, 5, 271, 29))
         self.sw_connectionCB.setObjectName("sw_connectionCB")
         self.wid_simConnect = QtWidgets.QWidget()
         self.wid_simConnect.setObjectName("wid_simConnect")
         self.cb_connectionAdress = QtWidgets.QComboBox(self.wid_simConnect)
         self.cb_connectionAdress.setEnabled(True)
-        self.cb_connectionAdress.setGeometry(QtCore.QRect(0, 0, 139, 29))
+        self.cb_connectionAdress.setGeometry(QtCore.QRect(0, 0, 132, 25))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -809,7 +815,7 @@ class Ui_MainWindow(object):
         self.cb_connectionAdress.addItem("")
         self.cb_port = QtWidgets.QComboBox(self.wid_simConnect)
         self.cb_port.setEnabled(True)
-        self.cb_port.setGeometry(QtCore.QRect(150, 0, 139, 29))
+        self.cb_port.setGeometry(QtCore.QRect(138, 0, 132, 25))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -843,7 +849,7 @@ class Ui_MainWindow(object):
         self.wid_normalConnect.setObjectName("wid_normalConnect")
         self.cb_connectionType = QtWidgets.QComboBox(self.wid_normalConnect)
         self.cb_connectionType.setEnabled(True)
-        self.cb_connectionType.setGeometry(QtCore.QRect(0, 1, 139, 25))
+        self.cb_connectionType.setGeometry(QtCore.QRect(0, 0, 132, 25))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -877,7 +883,7 @@ class Ui_MainWindow(object):
         self.cb_connectionType.addItem("")
         self.cb_baudRate = QtWidgets.QComboBox(self.wid_normalConnect)
         self.cb_baudRate.setEnabled(True)
-        self.cb_baudRate.setGeometry(QtCore.QRect(150, 1, 139, 25))
+        self.cb_baudRate.setGeometry(QtCore.QRect(138, 0, 132, 25))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -908,11 +914,11 @@ class Ui_MainWindow(object):
         self.cb_baudRate.addItem("")
         self.sw_connectionCB.addWidget(self.wid_normalConnect)
         self.bt_minimize = QtWidgets.QPushButton(self.centralwidget)
-        self.bt_minimize.setGeometry(QtCore.QRect(1287, 0, 45, 38))
+        self.bt_minimize.setGeometry(QtCore.QRect(1296, -1, 42, 37))
         self.bt_minimize.setStyleSheet("QPushButton {\n"
 "    background-color: white;\n"
 "    border: none;\n"
-"    border-left: 1px solid #D9D9D9;\n"
+"    border-left: 1px solid #ababab;\n"
 "}\n"
 "\n"
 "QPushButton::hover {\n"
@@ -925,7 +931,7 @@ class Ui_MainWindow(object):
         self.bt_minimize.setIconSize(QtCore.QSize(20, 20))
         self.bt_minimize.setObjectName("bt_minimize")
         self.bt_close = QtWidgets.QPushButton(self.centralwidget)
-        self.bt_close.setGeometry(QtCore.QRect(1377, 0, 45, 38))
+        self.bt_close.setGeometry(QtCore.QRect(1380, -1, 42, 37))
         self.bt_close.setStyleSheet("QPushButton {\n"
 "    background-color: white;\n"
 "    border: none;\n"
@@ -941,7 +947,7 @@ class Ui_MainWindow(object):
         self.bt_close.setIconSize(QtCore.QSize(20, 20))
         self.bt_close.setObjectName("bt_close")
         self.bt_maximize = QtWidgets.QPushButton(self.centralwidget)
-        self.bt_maximize.setGeometry(QtCore.QRect(1332, 0, 45, 38))
+        self.bt_maximize.setGeometry(QtCore.QRect(1338, -1, 42, 37))
         self.bt_maximize.setStyleSheet("QPushButton {\n"
 "    background-color: white;\n"
 "    border: none;\n"
@@ -957,17 +963,17 @@ class Ui_MainWindow(object):
         self.bt_maximize.setIconSize(QtCore.QSize(20, 20))
         self.bt_maximize.setObjectName("bt_maximize")
         self.cb_simulation = QtWidgets.QCheckBox(self.centralwidget)
-        self.cb_simulation.setGeometry(QtCore.QRect(750, 5, 91, 25))
+        self.cb_simulation.setGeometry(QtCore.QRect(744, 5, 91, 25))
         self.cb_simulation.setStyleSheet("")
         self.cb_simulation.setObjectName("cb_simulation")
-        self.layoutWidget2 = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget2.setGeometry(QtCore.QRect(0, 760, 1421, 41))
-        self.layoutWidget2.setObjectName("layoutWidget2")
-        self.bl_statusBar = QtWidgets.QHBoxLayout(self.layoutWidget2)
+        self.layoutWidget_3 = QtWidgets.QWidget(self.centralwidget)
+        self.layoutWidget_3.setGeometry(QtCore.QRect(0, 760, 1421, 35))
+        self.layoutWidget_3.setObjectName("layoutWidget_3")
+        self.bl_statusBar = QtWidgets.QHBoxLayout(self.layoutWidget_3)
         self.bl_statusBar.setContentsMargins(0, 0, 0, 0)
         self.bl_statusBar.setSpacing(0)
         self.bl_statusBar.setObjectName("bl_statusBar")
-        self.lb_teamName = QtWidgets.QLabel(self.layoutWidget2)
+        self.lb_teamName = QtWidgets.QLabel(self.layoutWidget_3)
         self.lb_teamName.setMaximumSize(QtCore.QSize(310, 16777215))
         font = QtGui.QFont()
         font.setFamily("Ubuntu")
@@ -979,12 +985,13 @@ class Ui_MainWindow(object):
         self.lb_teamName.setStyleSheet("QLabel {\n"
 "    font: 11pt \"Ubuntu\";\n"
 "    background-color: #ECECEC;\n"
-"    border-right: 1px solid #D9D9D9;\n"
+"    border-right: 1px solid #ababab;\n"
+"    border-top: 1px solid #ababab;\n"
 "}")
         self.lb_teamName.setAlignment(QtCore.Qt.AlignCenter)
         self.lb_teamName.setObjectName("lb_teamName")
         self.bl_statusBar.addWidget(self.lb_teamName)
-        self.lb_status = QtWidgets.QLabel(self.layoutWidget2)
+        self.lb_status = QtWidgets.QLabel(self.layoutWidget_3)
         font = QtGui.QFont()
         font.setFamily("Ubuntu")
         font.setPointSize(9)
@@ -996,12 +1003,13 @@ class Ui_MainWindow(object):
 "    font: 9pt \"Ubuntu\";\n"
 "    color: blue;\n"
 "    background-color: #ECECEC;\n"
-"    border-right: 1px solid #D9D9D9;\n"
+"    border-right: 1px solid #ababab;\n"
+"    border-top: 1px solid #ababab;\n"
 "}")
         self.lb_status.setAlignment(QtCore.Qt.AlignCenter)
         self.lb_status.setObjectName("lb_status")
         self.bl_statusBar.addWidget(self.lb_status)
-        self.lb_date = QtWidgets.QLabel(self.layoutWidget2)
+        self.lb_date = QtWidgets.QLabel(self.layoutWidget_3)
         self.lb_date.setMaximumSize(QtCore.QSize(310, 16777215))
         font = QtGui.QFont()
         font.setFamily("Ubuntu")
@@ -1013,6 +1021,7 @@ class Ui_MainWindow(object):
         self.lb_date.setStyleSheet("QLabel {\n"
 "    font: 11pt \"Ubuntu\";\n"
 "    background-color: #ECECEC;\n"
+"    border-top: 1px solid #ababab;\n"
 "}")
         self.lb_date.setAlignment(QtCore.Qt.AlignCenter)
         self.lb_date.setObjectName("lb_date")
@@ -1020,7 +1029,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tw_menu.setCurrentIndex(1)
         self.sw_connectionCB.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1053,7 +1062,7 @@ class Ui_MainWindow(object):
         self.lb_groundSpeed_2.setText(_translate("MainWindow", "Yer Hızı\n"
 "(m/s)"))
         self.cb_followUav.setText(_translate("MainWindow", "Uçağı Takip Et"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_mainScreen), _translate("MainWindow", "Ana Ekran"))
+        self.tw_menu.setTabText(self.tw_menu.indexOf(self.tab_mainScreen), _translate("MainWindow", "Ana Ekran"))
         self.bt_saveToFile.setText(_translate("MainWindow", "Görevi Dosyaya Kaydet"))
         self.bt_loadFromFile.setText(_translate("MainWindow", "Dosyadan Görev Yükle"))
         self.bt_getFlightToUAV.setText(_translate("MainWindow", "Uçaktan Görev Çek"))
@@ -1070,8 +1079,8 @@ class Ui_MainWindow(object):
         self.bt_complete.setText(_translate("MainWindow", "Tamamlandı"))
         self.lb_wpRadius.setText(_translate("MainWindow", "WP Yarıçapı:"))
         self.lb_defaultAlt.setText(_translate("MainWindow", "Varsayılan İrtifa:"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_planningMap), _translate("MainWindow", "Uçuş Planı"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_parameters), _translate("MainWindow", "Parametre"))
+        self.tw_menu.setTabText(self.tw_menu.indexOf(self.tab_planningMap), _translate("MainWindow", "Uçuş Planı"))
+        self.tw_menu.setTabText(self.tw_menu.indexOf(self.tab_parameters), _translate("MainWindow", "Parametre"))
         self.cb_resolution.setCurrentText(_translate("MainWindow", "        Çözünürlük", "asdsad"))
         self.cb_resolution.setItemText(0, _translate("MainWindow", "        Çözünürlük"))
         self.cb_resolution.setItemText(1, _translate("MainWindow", "1080p"))
@@ -1082,7 +1091,7 @@ class Ui_MainWindow(object):
         self.cb_resolution.setItemText(6, _translate("MainWindow", "144p"))
         self.bt_cameraStart.setText(_translate("MainWindow", "Görüntü İletimini\n"
 "Başlat"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_camera), _translate("MainWindow", "Kamera"))
+        self.tw_menu.setTabText(self.tw_menu.indexOf(self.tab_camera), _translate("MainWindow", "Kamera"))
         self.bt_connect.setText(_translate("MainWindow", "Bağlan"))
         self.cb_connectionAdress.setCurrentText(_translate("MainWindow", "Bağlantı Adresi", "asdsad"))
         self.cb_connectionAdress.setItemText(0, _translate("MainWindow", "Bağlantı Adresi"))

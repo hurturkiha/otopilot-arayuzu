@@ -20,13 +20,13 @@
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QTabWidget" name="tw_menu">
     <property name="geometry">
      <rect>
       <x>-2</x>
       <y>-3</y>
       <width>1431</width>
-      <height>800</height>
+      <height>802</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -59,7 +59,7 @@
        <rect>
         <x>10</x>
         <y>330</y>
-        <width>301</width>
+        <width>300</width>
         <height>90</height>
        </rect>
       </property>
@@ -139,7 +139,7 @@
        <rect>
         <x>10</x>
         <y>430</y>
-        <width>301</width>
+        <width>300</width>
         <height>122</height>
        </rect>
       </property>
@@ -245,7 +245,7 @@
        <rect>
         <x>10</x>
         <y>560</y>
-        <width>301</width>
+        <width>300</width>
         <height>154</height>
        </rect>
       </property>
@@ -1374,7 +1374,7 @@ QPushButton:active {
        <rect>
         <x>1095</x>
         <y>143</y>
-        <width>317</width>
+        <width>301</width>
         <height>27</height>
        </rect>
       </property>
@@ -1432,6 +1432,17 @@ QPushButton:active {
      <attribute name="title">
       <string>Parametre</string>
      </attribute>
+     <widget class="QWidget" name="verticalLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-1</y>
+        <width>1423</width>
+        <height>724</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="vl_parameters"/>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_camera">
      <attribute name="title">
@@ -1599,7 +1610,7 @@ Başlat</string>
    <widget class="QPushButton" name="bt_connect">
     <property name="geometry">
      <rect>
-      <x>1151</x>
+      <x>1120</x>
       <y>5</y>
       <width>121</width>
       <height>25</height>
@@ -1647,9 +1658,9 @@ QPushButton:active {
    <widget class="QStackedWidget" name="sw_connectionCB">
     <property name="geometry">
      <rect>
-      <x>845</x>
-      <y>3</y>
-      <width>291</width>
+      <x>840</x>
+      <y>5</y>
+      <width>271</width>
       <height>29</height>
      </rect>
     </property>
@@ -1665,8 +1676,8 @@ QPushButton:active {
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>139</width>
-        <height>29</height>
+        <width>132</width>
+        <height>25</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -1723,10 +1734,10 @@ QComboBox::drop-down {
       </property>
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>138</x>
         <y>0</y>
-        <width>139</width>
-        <height>29</height>
+        <width>132</width>
+        <height>25</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -1786,8 +1797,8 @@ QComboBox::drop-down {
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>1</y>
-        <width>139</width>
+        <y>0</y>
+        <width>132</width>
         <height>25</height>
        </rect>
       </property>
@@ -1850,9 +1861,9 @@ QComboBox::drop-down {
       </property>
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>1</y>
-        <width>139</width>
+        <x>138</x>
+        <y>0</y>
+        <width>132</width>
         <height>25</height>
        </rect>
       </property>
@@ -1909,17 +1920,17 @@ QComboBox::drop-down {
    <widget class="QPushButton" name="bt_minimize">
     <property name="geometry">
      <rect>
-      <x>1287</x>
-      <y>0</y>
-      <width>45</width>
-      <height>38</height>
+      <x>1296</x>
+      <y>-1</y>
+      <width>42</width>
+      <height>37</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
 	background-color: white;
 	border: none;
-	border-left: 1px solid #D9D9D9;
+	border-left: 1px solid #ababab;
 }
 
 QPushButton::hover {
@@ -1943,10 +1954,10 @@ background-color : rgb(239, 41, 41);
    <widget class="QPushButton" name="bt_close">
     <property name="geometry">
      <rect>
-      <x>1377</x>
-      <y>0</y>
-      <width>45</width>
-      <height>38</height>
+      <x>1380</x>
+      <y>-1</y>
+      <width>42</width>
+      <height>37</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1976,10 +1987,10 @@ background-color : rgb(239, 41, 41);
    <widget class="QPushButton" name="bt_maximize">
     <property name="geometry">
      <rect>
-      <x>1332</x>
-      <y>0</y>
-      <width>45</width>
-      <height>38</height>
+      <x>1338</x>
+      <y>-1</y>
+      <width>42</width>
+      <height>37</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -2009,7 +2020,7 @@ background-color : rgb(239, 41, 41);
    <widget class="QCheckBox" name="cb_simulation">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>744</x>
       <y>5</y>
       <width>91</width>
       <height>25</height>
@@ -2022,13 +2033,13 @@ background-color : rgb(239, 41, 41);
      <string>Simülasyon</string>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="layoutWidget_3">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>760</y>
       <width>1421</width>
-      <height>41</height>
+      <height>35</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="bl_statusBar" stretch="0,0,0">
@@ -2056,7 +2067,8 @@ background-color : rgb(239, 41, 41);
         <string notr="true">QLabel {
 	font: 11pt &quot;Ubuntu&quot;;
 	background-color: #ECECEC;
-	border-right: 1px solid #D9D9D9;
+	border-right: 1px solid #ababab;
+	border-top: 1px solid #ababab;
 }</string>
        </property>
        <property name="text">
@@ -2083,7 +2095,8 @@ background-color : rgb(239, 41, 41);
 	font: 9pt &quot;Ubuntu&quot;;
 	color: blue;
 	background-color: #ECECEC;
-	border-right: 1px solid #D9D9D9;
+	border-right: 1px solid #ababab;
+	border-top: 1px solid #ababab;
 }</string>
        </property>
        <property name="text">
@@ -2115,6 +2128,7 @@ background-color : rgb(239, 41, 41);
         <string notr="true">QLabel {
 	font: 11pt &quot;Ubuntu&quot;;
 	background-color: #ECECEC;
+	border-top: 1px solid #ababab;
 }</string>
        </property>
        <property name="text">
