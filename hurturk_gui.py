@@ -122,6 +122,11 @@ class HurturkGui(QMainWindow):
              'Enlem', 'Boylam', 'İrtifa', 'Sil?'])
 
         self.ui.tw_waypoints.setColumnWidth(0, 110)
+
+
+        self.ui.tw_waypoints.verticalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.ui.tw_waypoints.verticalHeader().setDefaultSectionSize(27)
+
         self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
         self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(2, QHeaderView.Stretch)
         self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(3, QHeaderView.Stretch)
