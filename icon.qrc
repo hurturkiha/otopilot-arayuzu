@@ -1,0 +1,30 @@
+<RCC>
+  <qresource prefix="map">
+    <file>icons/clear_geofence.png</file>
+    <file>icons/clear_mark.png</file>
+    <file>icons/clear_track.png</file>
+    <file>icons/geofence_marker.png</file>
+    <file>icons/marker.png</file>
+    <file>icons/plane.png</file>
+  </qresource>
+  <qresource prefix="window">
+    <file>icons/down-arrow.png</file>
+    <file>icons/exit.png</file>
+    <file>icons/fullscreen.png</file>
+    <file>icons/minimize.png</file>
+  </qresource>
+  <qresource prefix="team">
+    <file>icons/temp_camera.png</file>
+    <file>icons/team-logo.png</file>
+  </qresource>
+  <qresource prefix="hud">
+    <file>icons/speed_indicator.png</file>
+    <file>icons/speed-indicator-tick.png</file>
+    <file>icons/high_connection.png</file>
+    <file>icons/low_connection.png</file>
+    <file>icons/medium_connection.png</file>
+    <file>icons/pitch_bar.png</file>
+    <file>icons/roll_bar.png</file>
+    <file>icons/yaw_tick.png</file>
+  </qresource>
+</RCC>
