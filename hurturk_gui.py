@@ -55,17 +55,44 @@ class HurturkGui(QMainWindow):
 
         self.oldPosition = self.window().pos()
 
+        # Pencre kontrol düğmelerinin tetikleyeceği fonksiyonlar.
+        self.ui.bt_close.clicked.connect(self.close_window)
+        # self.ui.bt_maximize.clicked.connect(self.maximize_window)
+        self.ui.bt_minimize.clicked.connect(self.minimize_window)
+
+    ###############################################
+    ##         PENCERE KONTROL DÜĞMELERİ         ##
+    ###############################################
+
+    def close_window(self):
+        """Kapatma butonu ile pencereyi kapatır."""
+
+        self.window().close()
+
+    def minimize_window(self):
+        """Ekran küçültme butonu ile pencereyi küçültür."""
+
+        self.window().showMinimized()
+
+    def maximize_window(self):
+        """Tam ekran butonu ile pencereyi genişletir."""
+
+        if self.isFullScreen():
+            self.window().showNormal()
+        else:
+            self.window().showFullScreen()
+
+    ###############################################
+    ##   PENCERE HAREKET ETTİRME FONKSİYONLARI   ##
+    ###############################################
+
     def mousePressEvent(self, event):
-        """
-        Pencereye tıklanınca taşımak için kordinatı alır.
-        """
+        """Pencereye tıklanınca taşımadan önce kordinatı alır."""
 
         self.oldPosition = event.globalPos()
 
     def mouseMoveEvent(self, event):
-        """
-        Pencere hareketini gerçekleştirir.
-        """
+        """Pencere hareketini gerçekleştirir."""
 
         delta = QPoint(event.globalPos() - self.oldPosition)  # x ve y ekseninde kaydırılan mesafe
         self.window().move(self.window().x() + delta.x(), self.window().y() + delta.y())  # başlangıç noktası kaydırılır
