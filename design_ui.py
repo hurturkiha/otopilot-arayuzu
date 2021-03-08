@@ -51,6 +51,7 @@ class Ui_MainWindow(object):
         self.le_groundSpeed = QtWidgets.QLineEdit(self.formLayoutWidget)
         self.le_groundSpeed.setMinimumSize(QtCore.QSize(0, 25))
         self.le_groundSpeed.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_groundSpeed.setAlignment(QtCore.Qt.AlignCenter)
         self.le_groundSpeed.setReadOnly(True)
         self.le_groundSpeed.setObjectName("le_groundSpeed")
         self.fl_speedInfo.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.le_groundSpeed)
@@ -60,6 +61,7 @@ class Ui_MainWindow(object):
         self.le_airSpeed = QtWidgets.QLineEdit(self.formLayoutWidget)
         self.le_airSpeed.setMinimumSize(QtCore.QSize(0, 25))
         self.le_airSpeed.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_airSpeed.setAlignment(QtCore.Qt.AlignCenter)
         self.le_airSpeed.setReadOnly(True)
         self.le_airSpeed.setObjectName("le_airSpeed")
         self.fl_speedInfo.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.le_airSpeed)
@@ -79,6 +81,7 @@ class Ui_MainWindow(object):
         self.le_roll = QtWidgets.QLineEdit(self.formLayoutWidget_2)
         self.le_roll.setMinimumSize(QtCore.QSize(0, 25))
         self.le_roll.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_roll.setAlignment(QtCore.Qt.AlignCenter)
         self.le_roll.setReadOnly(True)
         self.le_roll.setObjectName("le_roll")
         self.fl_imuInfo.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.le_roll)
@@ -88,6 +91,7 @@ class Ui_MainWindow(object):
         self.le_pitch = QtWidgets.QLineEdit(self.formLayoutWidget_2)
         self.le_pitch.setMinimumSize(QtCore.QSize(0, 25))
         self.le_pitch.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_pitch.setAlignment(QtCore.Qt.AlignCenter)
         self.le_pitch.setReadOnly(True)
         self.le_pitch.setObjectName("le_pitch")
         self.fl_imuInfo.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.le_pitch)
@@ -97,6 +101,7 @@ class Ui_MainWindow(object):
         self.le_yaw = QtWidgets.QLineEdit(self.formLayoutWidget_2)
         self.le_yaw.setMinimumSize(QtCore.QSize(0, 25))
         self.le_yaw.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_yaw.setAlignment(QtCore.Qt.AlignCenter)
         self.le_yaw.setReadOnly(True)
         self.le_yaw.setObjectName("le_yaw")
         self.fl_imuInfo.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.le_yaw)
@@ -116,6 +121,7 @@ class Ui_MainWindow(object):
         self.le_lat = QtWidgets.QLineEdit(self.formLayoutWidget_3)
         self.le_lat.setMinimumSize(QtCore.QSize(0, 25))
         self.le_lat.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_lat.setAlignment(QtCore.Qt.AlignCenter)
         self.le_lat.setReadOnly(True)
         self.le_lat.setObjectName("le_lat")
         self.fl_gpsInfo.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.le_lat)
@@ -125,6 +131,7 @@ class Ui_MainWindow(object):
         self.le_lng = QtWidgets.QLineEdit(self.formLayoutWidget_3)
         self.le_lng.setMinimumSize(QtCore.QSize(0, 25))
         self.le_lng.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_lng.setAlignment(QtCore.Qt.AlignCenter)
         self.le_lng.setReadOnly(True)
         self.le_lng.setObjectName("le_lng")
         self.fl_gpsInfo.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.le_lng)
@@ -134,6 +141,7 @@ class Ui_MainWindow(object):
         self.le_alt = QtWidgets.QLineEdit(self.formLayoutWidget_3)
         self.le_alt.setMinimumSize(QtCore.QSize(0, 25))
         self.le_alt.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_alt.setAlignment(QtCore.Qt.AlignCenter)
         self.le_alt.setReadOnly(True)
         self.le_alt.setObjectName("le_alt")
         self.fl_gpsInfo.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.le_alt)
@@ -143,11 +151,12 @@ class Ui_MainWindow(object):
         self.le_sat = QtWidgets.QLineEdit(self.formLayoutWidget_3)
         self.le_sat.setMinimumSize(QtCore.QSize(0, 25))
         self.le_sat.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_sat.setAlignment(QtCore.Qt.AlignCenter)
         self.le_sat.setReadOnly(True)
         self.le_sat.setObjectName("le_sat")
         self.fl_gpsInfo.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.le_sat)
         self.bt_arm = QtWidgets.QPushButton(self.tab_mainScreen)
-        self.bt_arm.setGeometry(QtCore.QRect(324, 350, 351, 32))
+        self.bt_arm.setGeometry(QtCore.QRect(324, 351, 351, 32))
         self.bt_arm.setStyleSheet("QPushButton {\n"
 "    box-shadow:inset 0px 1px 0px 0px #f29c93;\n"
 "    background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);\n"
@@ -196,6 +205,7 @@ class Ui_MainWindow(object):
         self.le_flightMode = QtWidgets.QLineEdit(self.formLayoutWidget_4)
         self.le_flightMode.setMinimumSize(QtCore.QSize(0, 25))
         self.le_flightMode.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_flightMode.setAlignment(QtCore.Qt.AlignCenter)
         self.le_flightMode.setReadOnly(True)
         self.le_flightMode.setObjectName("le_flightMode")
         self.fl_flightInfo.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.le_flightMode)
@@ -205,6 +215,7 @@ class Ui_MainWindow(object):
         self.le_flightTime = QtWidgets.QLineEdit(self.formLayoutWidget_4)
         self.le_flightTime.setMinimumSize(QtCore.QSize(0, 25))
         self.le_flightTime.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_flightTime.setAlignment(QtCore.Qt.AlignCenter)
         self.le_flightTime.setReadOnly(True)
         self.le_flightTime.setObjectName("le_flightTime")
         self.fl_flightInfo.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.le_flightTime)
@@ -410,7 +421,7 @@ class Ui_MainWindow(object):
         self.bt_clearMap.setIconSize(QtCore.QSize(25, 25))
         self.bt_clearMap.setObjectName("bt_clearMap")
         self.bt_clearGeofence = QtWidgets.QPushButton(self.tab_planningMap)
-        self.bt_clearGeofence.setGeometry(QtCore.QRect(21, 124, 32, 32))
+        self.bt_clearGeofence.setGeometry(QtCore.QRect(21, 123, 32, 32))
         self.bt_clearGeofence.setText("")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/map/icons/clear_geofence.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -418,7 +429,7 @@ class Ui_MainWindow(object):
         self.bt_clearGeofence.setIconSize(QtCore.QSize(25, 25))
         self.bt_clearGeofence.setObjectName("bt_clearGeofence")
         self.bt_clearTrack = QtWidgets.QPushButton(self.tab_planningMap)
-        self.bt_clearTrack.setGeometry(QtCore.QRect(21, 155, 32, 32))
+        self.bt_clearTrack.setGeometry(QtCore.QRect(21, 153, 32, 32))
         self.bt_clearTrack.setText("")
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap(":/map/icons/clear_track.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -426,18 +437,38 @@ class Ui_MainWindow(object):
         self.bt_clearTrack.setIconSize(QtCore.QSize(25, 25))
         self.bt_clearTrack.setObjectName("bt_clearTrack")
         self.tw_waypoints = QtWidgets.QTableWidget(self.tab_planningMap)
-        self.tw_waypoints.setGeometry(QtCore.QRect(744, 220, 661, 491))
-        self.tw_waypoints.setStyleSheet("QTableCornerButton {\n"
+        self.tw_waypoints.setGeometry(QtCore.QRect(745, 220, 661, 491))
+        self.tw_waypoints.setStyleSheet("QTableWidget{\n"
+"    border-top: 1px solid lightgray;\n"
+"    border-right: 1px solid lightgray;\n"
+"    outline: 0;\n"
+"    selection-background-color: white;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QTableCornerButton {\n"
 "    background-color: rgba(255, 255, 255, 0);\n"
+"}\n"
+"\n"
+"QTableWidget::item{\n"
+"    border-left: 1px solid lightgray;\n"
+"    border-bottom: 1px solid lightgray;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QTableWidget::item:focus{\n"
+"    background-color:transparent;\n"
+"    color: black;\n"
 "}\n"
 "\n"
 "QHeaderView::section {\n"
 "    background-color: rgb(238, 238, 236);\n"
-"    padding: 2px;\n"
+"    padding: 4px;\n"
 "    font-size: 9pt;\n"
+"    height: 18px;\n"
 "    border-style: none;\n"
 "    border-bottom: 1px solid #fffff8;\n"
-"    border-right: 1px solid #fffff8;\n"
+"    border-left: 1px solid lightgray;\n"
 "}\n"
 "\n"
 "QHeaderView::section:horizontal\n"
@@ -445,15 +476,18 @@ class Ui_MainWindow(object):
 "    border-top: 1px solid #fffff8;\n"
 "}\n"
 "\n"
-"QHeaderView::section:vertical\n"
-"{\n"
-"    border-left: 1px solid #fffff8;\n"
+"QScrollBar:vertical {\n"
+"    border: none;\n"
+"    background:white;\n"
+"    border-radius: 12px;\n"
+"    width:6px;\n"
+"    margin: 0px 0px 0px 0px;\n"
 "}\n"
 "\n"
-"QTableWidget\n"
-"{\n"
-"    selection-background-color: rgba(255, 255, 255, 0);\n"
-"    selection-color: black;\n"
+"QScrollBar::handle:vertical {\n"
+"   background: gray;\n"
+"    min-height: 0px;\n"
+"    border-radius: 12px;\n"
 "}")
         self.tw_waypoints.setObjectName("tw_waypoints")
         self.tw_waypoints.setColumnCount(0)
@@ -592,6 +626,7 @@ class Ui_MainWindow(object):
         self.le_flightTime_2 = QtWidgets.QLineEdit(self.formLayoutWidget_5)
         self.le_flightTime_2.setMinimumSize(QtCore.QSize(0, 25))
         self.le_flightTime_2.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_flightTime_2.setAlignment(QtCore.Qt.AlignCenter)
         self.le_flightTime_2.setReadOnly(True)
         self.le_flightTime_2.setObjectName("le_flightTime_2")
         self.fl_flightInfo_2.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.le_flightTime_2)
@@ -601,6 +636,7 @@ class Ui_MainWindow(object):
         self.le_flightDistance = QtWidgets.QLineEdit(self.formLayoutWidget_5)
         self.le_flightDistance.setMinimumSize(QtCore.QSize(0, 25))
         self.le_flightDistance.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_flightDistance.setAlignment(QtCore.Qt.AlignCenter)
         self.le_flightDistance.setReadOnly(True)
         self.le_flightDistance.setObjectName("le_flightDistance")
         self.fl_flightInfo_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.le_flightDistance)
@@ -610,6 +646,7 @@ class Ui_MainWindow(object):
         self.le_totalFlightTime = QtWidgets.QLineEdit(self.formLayoutWidget_5)
         self.le_totalFlightTime.setMinimumSize(QtCore.QSize(0, 25))
         self.le_totalFlightTime.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_totalFlightTime.setAlignment(QtCore.Qt.AlignCenter)
         self.le_totalFlightTime.setReadOnly(True)
         self.le_totalFlightTime.setObjectName("le_totalFlightTime")
         self.fl_flightInfo_2.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.le_totalFlightTime)
@@ -619,6 +656,7 @@ class Ui_MainWindow(object):
         self.le_totalFlightDistance = QtWidgets.QLineEdit(self.formLayoutWidget_5)
         self.le_totalFlightDistance.setMinimumSize(QtCore.QSize(0, 25))
         self.le_totalFlightDistance.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_totalFlightDistance.setAlignment(QtCore.Qt.AlignCenter)
         self.le_totalFlightDistance.setReadOnly(True)
         self.le_totalFlightDistance.setObjectName("le_totalFlightDistance")
         self.fl_flightInfo_2.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.le_totalFlightDistance)
@@ -626,7 +664,7 @@ class Ui_MainWindow(object):
         self.gb_geofence.setGeometry(QtCore.QRect(1085, 13, 321, 122))
         self.gb_geofence.setObjectName("gb_geofence")
         self.formLayoutWidget_6 = QtWidgets.QWidget(self.gb_geofence)
-        self.formLayoutWidget_6.setGeometry(QtCore.QRect(10, 27, 299, 98))
+        self.formLayoutWidget_6.setGeometry(QtCore.QRect(10, 27, 301, 98))
         self.formLayoutWidget_6.setObjectName("formLayoutWidget_6")
         self.fl_geofence = QtWidgets.QFormLayout(self.formLayoutWidget_6)
         self.fl_geofence.setContentsMargins(0, 0, 0, 0)
@@ -638,6 +676,7 @@ class Ui_MainWindow(object):
         self.le_minAlt = QtWidgets.QLineEdit(self.formLayoutWidget_6)
         self.le_minAlt.setMinimumSize(QtCore.QSize(0, 25))
         self.le_minAlt.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_minAlt.setAlignment(QtCore.Qt.AlignCenter)
         self.le_minAlt.setObjectName("le_minAlt")
         self.fl_geofence.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.le_minAlt)
         self.lb_maxAlt = QtWidgets.QLabel(self.formLayoutWidget_6)
@@ -646,18 +685,19 @@ class Ui_MainWindow(object):
         self.le_maxAlt = QtWidgets.QLineEdit(self.formLayoutWidget_6)
         self.le_maxAlt.setMinimumSize(QtCore.QSize(0, 25))
         self.le_maxAlt.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_maxAlt.setAlignment(QtCore.Qt.AlignCenter)
         self.le_maxAlt.setObjectName("le_maxAlt")
         self.fl_geofence.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.le_maxAlt)
         self.cb_geofenceOnOff = QtWidgets.QCheckBox(self.formLayoutWidget_6)
         self.cb_geofenceOnOff.setStyleSheet("")
         self.cb_geofenceOnOff.setObjectName("cb_geofenceOnOff")
         self.fl_geofence.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.cb_geofenceOnOff)
-        self.bt_complete = QtWidgets.QPushButton(self.formLayoutWidget_6)
-        self.bt_complete.setMinimumSize(QtCore.QSize(0, 20))
-        self.bt_complete.setObjectName("bt_complete")
-        self.fl_geofence.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.bt_complete)
+        self.bt_completeGeofence = QtWidgets.QPushButton(self.formLayoutWidget_6)
+        self.bt_completeGeofence.setMinimumSize(QtCore.QSize(0, 20))
+        self.bt_completeGeofence.setObjectName("bt_completeGeofence")
+        self.fl_geofence.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.bt_completeGeofence)
         self.layoutWidget1 = QtWidgets.QWidget(self.tab_planningMap)
-        self.layoutWidget1.setGeometry(QtCore.QRect(1095, 143, 301, 27))
+        self.layoutWidget1.setGeometry(QtCore.QRect(1095, 143, 311, 27))
         self.layoutWidget1.setObjectName("layoutWidget1")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.layoutWidget1)
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -668,6 +708,7 @@ class Ui_MainWindow(object):
         self.le_wpRadius = QtWidgets.QLineEdit(self.layoutWidget1)
         self.le_wpRadius.setMinimumSize(QtCore.QSize(0, 25))
         self.le_wpRadius.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_wpRadius.setAlignment(QtCore.Qt.AlignCenter)
         self.le_wpRadius.setObjectName("le_wpRadius")
         self.horizontalLayout_3.addWidget(self.le_wpRadius)
         self.lb_defaultAlt = QtWidgets.QLabel(self.layoutWidget1)
@@ -676,6 +717,7 @@ class Ui_MainWindow(object):
         self.le_defaultAlt = QtWidgets.QLineEdit(self.layoutWidget1)
         self.le_defaultAlt.setMinimumSize(QtCore.QSize(0, 25))
         self.le_defaultAlt.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.le_defaultAlt.setAlignment(QtCore.Qt.AlignCenter)
         self.le_defaultAlt.setObjectName("le_defaultAlt")
         self.horizontalLayout_3.addWidget(self.le_defaultAlt)
         self.tw_menu.addTab(self.tab_planningMap, "")
@@ -1105,9 +1147,11 @@ class Ui_MainWindow(object):
         self.lb_minAlt.setText(_translate("MainWindow", "Minimum İrtifa"))
         self.lb_maxAlt.setText(_translate("MainWindow", "Maksimum İrtifa"))
         self.cb_geofenceOnOff.setText(_translate("MainWindow", "Geofence Açık/Kapalı"))
-        self.bt_complete.setText(_translate("MainWindow", "Tamamlandı"))
+        self.bt_completeGeofence.setText(_translate("MainWindow", "Tamamlandı"))
         self.lb_wpRadius.setText(_translate("MainWindow", "WP Yarıçapı:"))
+        self.le_wpRadius.setText(_translate("MainWindow", "30"))
         self.lb_defaultAlt.setText(_translate("MainWindow", "Varsayılan İrtifa:"))
+        self.le_defaultAlt.setText(_translate("MainWindow", "30"))
         self.tw_menu.setTabText(self.tw_menu.indexOf(self.tab_planningMap), _translate("MainWindow", "Uçuş Planı"))
         self.tw_menu.setTabText(self.tw_menu.indexOf(self.tab_parameters), _translate("MainWindow", "Parametre"))
         self.cb_resolution.setCurrentText(_translate("MainWindow", "        Çözünürlük", "asdsad"))

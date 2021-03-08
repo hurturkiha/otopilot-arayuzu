@@ -40,6 +40,7 @@ class ParameterWidget(QWidget):
         self.ui.tw_parameters.setColumnCount(3)
 
         horizontal_header = self.ui.tw_parameters.horizontalHeader()
+        horizontal_header.setHighlightSections(False)
         horizontal_header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
         horizontal_header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
         horizontal_header.setSectionResizeMode(2, QHeaderView.Stretch)
@@ -63,13 +64,21 @@ class ParameterWidget(QWidget):
                     self.ui.tw_parameters.setItem(index - 1, 0, QTableWidgetItem(parameter))
                     self.ui.tw_parameters.setItem(index - 1, 1, QTableWidgetItem(attribute['deger']))
                     self.ui.tw_parameters.setItem(index - 1, 2, QTableWidgetItem(attribute['aciklama']))
+
+                    self.ui.tw_parameters.item(index - 1, 0).setFlags(Qt.ItemIsEditable)
+                    self.ui.tw_parameters.item(index - 1, 2).setFlags(Qt.ItemIsEditable)
+
                     index += 1
         else:
-            for parameter, attribute in self.parameters[self.sender().objectName()].items():
+            for parameter, attribute in self.parameters_dict[self.sender().objectName()].items():
                 self.ui.tw_parameters.setRowCount(index)
                 self.ui.tw_parameters.setItem(index - 1, 0, QTableWidgetItem(parameter))
                 self.ui.tw_parameters.setItem(index - 1, 1, QTableWidgetItem(attribute['deger']))
                 self.ui.tw_parameters.setItem(index - 1, 2, QTableWidgetItem(attribute['aciklama']))
+
+                self.ui.tw_parameters.item(index - 1, 0).setFlags(Qt.ItemIsEditable)
+                self.ui.tw_parameters.item(index - 1, 2).setFlags(Qt.ItemIsEditable)
+
                 index += 1
 
     def read_json(self):

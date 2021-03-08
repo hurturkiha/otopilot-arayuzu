@@ -197,6 +197,7 @@
 	border-top: 1px solid lightgray;
 	border-right: 1px solid lightgray;
 	outline: 0;
+	selection-background-color: white;
 }
 QTableCornerButton {
     background-color: rgba(255, 255, 255, 0);
@@ -204,10 +205,12 @@ QTableCornerButton {
 QTableWidget::item{
 	border-left: 1px solid lightgray;
 	border-bottom: 1px solid lightgray;
+	color: black;
 }
 
+
 QTableWidget::item:focus{
-	background-color: rgba(255, 0, 0, 0.1);
+	background-color:transparent;
 	color: black;
 }
 

@@ -100,6 +100,9 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -125,6 +128,9 @@
             <width>150</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
           <property name="readOnly">
            <bool>true</bool>
@@ -180,6 +186,9 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -206,6 +215,9 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -231,6 +243,9 @@
             <width>150</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
           <property name="readOnly">
            <bool>true</bool>
@@ -286,6 +301,9 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -311,6 +329,9 @@
             <width>150</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
           <property name="readOnly">
            <bool>true</bool>
@@ -338,6 +359,9 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -364,6 +388,9 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -376,7 +403,7 @@
       <property name="geometry">
        <rect>
         <x>324</x>
-        <y>350</y>
+        <y>351</y>
         <width>351</width>
         <height>32</height>
        </rect>
@@ -479,6 +506,9 @@ QPushButton:active {
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -504,6 +534,9 @@ QPushButton:active {
             <width>150</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
           <property name="readOnly">
            <bool>true</bool>
@@ -920,7 +953,7 @@ QPushButton:active {
       <property name="geometry">
        <rect>
         <x>21</x>
-        <y>124</y>
+        <y>123</y>
         <width>32</width>
         <height>32</height>
        </rect>
@@ -943,7 +976,7 @@ QPushButton:active {
       <property name="geometry">
        <rect>
         <x>21</x>
-        <y>155</y>
+        <y>153</y>
         <width>32</width>
         <height>32</height>
        </rect>
@@ -965,24 +998,44 @@ QPushButton:active {
      <widget class="QTableWidget" name="tw_waypoints">
       <property name="geometry">
        <rect>
-        <x>744</x>
+        <x>745</x>
         <y>220</y>
         <width>661</width>
         <height>491</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QTableCornerButton {
+       <string notr="true">QTableWidget{
+	border-top: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+	outline: 0;
+	selection-background-color: white;
+	color: black;
+}
+
+QTableCornerButton {
     background-color: rgba(255, 255, 255, 0);
+}
+
+QTableWidget::item{
+	border-left: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	color: black;
+}
+
+QTableWidget::item:focus{
+	background-color:transparent;
+	color: black;
 }
 
 QHeaderView::section {
     background-color: rgb(238, 238, 236);
-    padding: 2px;
+    padding: 4px;
     font-size: 9pt;
+	height: 18px;
     border-style: none;
     border-bottom: 1px solid #fffff8;
-    border-right: 1px solid #fffff8;
+	border-left: 1px solid lightgray;
 }
 
 QHeaderView::section:horizontal
@@ -990,15 +1043,18 @@ QHeaderView::section:horizontal
     border-top: 1px solid #fffff8;
 }
 
-QHeaderView::section:vertical
-{
-    border-left: 1px solid #fffff8;
+QScrollBar:vertical {
+    border: none;
+    background:white;
+	border-radius: 12px;
+    width:6px;
+    margin: 0px 0px 0px 0px;
 }
 
-QTableWidget
-{
-	selection-background-color: rgba(255, 255, 255, 0);
-	selection-color: black;
+QScrollBar::handle:vertical {
+   background: gray;
+    min-height: 0px;
+	border-radius: 12px;
 }</string>
       </property>
      </widget>
@@ -1216,6 +1272,9 @@ QPushButton:active {
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -1241,6 +1300,9 @@ QPushButton:active {
             <width>150</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
           <property name="readOnly">
            <bool>true</bool>
@@ -1268,6 +1330,9 @@ QPushButton:active {
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -1294,6 +1359,9 @@ QPushButton:active {
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -1319,7 +1387,7 @@ QPushButton:active {
         <rect>
          <x>10</x>
          <y>27</y>
-         <width>299</width>
+         <width>301</width>
          <height>98</height>
         </rect>
        </property>
@@ -1348,6 +1416,9 @@ QPushButton:active {
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
          </widget>
         </item>
         <item row="1" column="0">
@@ -1371,6 +1442,9 @@ QPushButton:active {
             <height>16777215</height>
            </size>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
          </widget>
         </item>
         <item row="2" column="0">
@@ -1384,7 +1458,7 @@ QPushButton:active {
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QPushButton" name="bt_complete">
+         <widget class="QPushButton" name="bt_completeGeofence">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -1404,7 +1478,7 @@ QPushButton:active {
        <rect>
         <x>1095</x>
         <y>143</y>
-        <width>301</width>
+        <width>311</width>
         <height>27</height>
        </rect>
       </property>
@@ -1430,6 +1504,12 @@ QPushButton:active {
            <height>16777215</height>
           </size>
          </property>
+         <property name="text">
+          <string>30</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item>
@@ -1452,6 +1532,12 @@ QPushButton:active {
            <width>150</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="text">
+          <string>30</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>

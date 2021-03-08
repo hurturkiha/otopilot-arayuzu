@@ -1,6 +1,8 @@
 # created by Hurturk UAV Team (2021)
 import datetime
+from collections import OrderedDict
 
+import geopy.distance
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import *
 from PyQt5 import QtTest, QtCore
@@ -59,13 +61,13 @@ class HurturkGui(QMainWindow):
 
         # Başlangıçta ana sayfadan başlamayı sağlar.
         self.ui.tw_menu.setCurrentIndex(0)
-
+        self.ui.tw_menu.currentChanged.connect(self.changed_tab)
         self.oldPosition = self.window().pos()
 
-        # Pencere kontrol düğmelerinin tetikleyeceği fonksiyonları ayarlar.
         self.ui.bt_close.clicked.connect(self.close_window)
         # self.ui.bt_maximize.clicked.connect(self.maximize_window)
         self.ui.bt_minimize.clicked.connect(self.minimize_window)
+        self.ui.le_wpRadius.textChanged.connect(self.changed_wp_rad)
 
         # Parametre sekmesi widget olarak eklenir.
         self.parameters_widget = ParameterWidget()
@@ -78,29 +80,33 @@ class HurturkGui(QMainWindow):
         self.show_time()
 
         self.create_table()
-
         self.create_planning_map()
-        self.ui.tw_menu.currentChanged.connect(self.changed_tab)
 
-    ###############################################
-    ##            HARİTA FONKSİYONLARI           ##
-    ###############################################
+        self.waypoints_id_no = 0
+        self.geofence_id_no = 0
+        self.polygon = None
+        self.geofence_markers = []
+        self.markers = OrderedDict()
+        self.markers_lg = L.layerGroup()
+        self.circles_lg = L.layerGroup()
+        self.lines_lg = L.layerGroup()
+        self.geofence_markers_lg = L.layerGroup()
+        
+        self.planning_map.addLayer(self.geofence_markers_lg)
+        self.planning_map.addLayer(self.markers_lg)
+        self.planning_map.addLayer(self.circles_lg)
+        self.planning_map.addLayer(self.lines_lg)
 
-    def create_planning_map(self):
-        print("aaaa")
-        self.planning_map_widget = MapWidget()
-        self.ui.vbl_miniMap.addWidget(self.planning_map_widget)
+        self.ui.cb_geofenceOnOff.stateChanged.connect(self.isGeofenceOnOff)
+        self.ui.bt_clearMap.clicked.connect(lambda: self.clear_map(is_markers_clear=True))
+        self.ui.bt_clearGeofence.clicked.connect(self.clear_geofence)
+        self.ui.bt_completeGeofence.clicked.connect(self.complete_geofence)
 
-        self.planning_map = L.map(self.planning_map_widget)
-        self.planning_map.setView([40.215725, 29.080278], 18)
-
-        self.tile_layer = L.tileLayer(
-            'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
-        self.tile_layer.addTo(self.planning_map)
 
     ###############################################
     ##             GUI FONKSİYONLARI             ##
     ###############################################
+
 
     def changed_tab(self, index):
         if index == 0:
@@ -110,8 +116,108 @@ class HurturkGui(QMainWindow):
             self.ui.vbl_planningMap.addWidget(self.planning_map_widget)
             self.planning_map.clicked.connect(self.add_marker)
 
+    def isGeofenceOnOff(self, index):
+        if index == 2:
+            self.planning_map.clicked.disconnect()
+            self.planning_map.clicked.connect(self.add_geofence_marker)
+        elif index == 0:
+            self.planning_map.clicked.disconnect()
+            self.planning_map.clicked.connect(self.add_marker)
+
+    def load_flight_plan(self):
+        pass
+
+    def save_mission_plan(self):
+        if len(self.markers.keys()) == 0:
+            QMessageBox.warning(self, "Hata", "Önce görev atasana kardeşim.")
+        else:
+            dialog = QFileDialog()
+            dialog.setDefaultSuffix(".json")
+            file = dialog.getSaveFileName(None, "Görevi kaydetmek için yol seçin", "", "JSON (*.json)")
+            print(file)
+            if dialog.result() == QFileDialog.Accepted:
+                temp_markers = self.markers.copy().values()
+                for tmp_marker in temp_markers:
+                    del tmp_marker["marker"]
+                    del tmp_marker["circle"]
+                    del tmp_marker["row_no"]
+                    del tmp_marker["wp_rad"]
+                if file[0].rfind('.') == -1:
+                    print("aaa")
+                    with open(f'{file[0]}.json', 'w') as json_file:
+                        json.dump(list(temp_markers), json_file, indent=2)
+                else:
+                    with open(file[0], 'w') as json_file:
+                        json.dump(list(temp_markers), json_file, indent=2)
+
+    def load_mission_plan(self):
+        dialog = QFileDialog()
+        dialog.setDefaultSuffix(".json")
+        file = dialog.getOpenFileName(None, "Görev yüklemek için JSON dosyası seçin", "", "JSON (*.json)")
+
+        if dialog.result() == QFileDialog.Accepted:
+            with open(file[0]) as f:
+                data = json.load(f)
+
+            self.clear_map()
+            self.draw_all_markers(values=data)
+
+
+    def changed_wp_rad(self, new_wp_radius):
+        for marker in self.markers.values():
+            marker["wp_rad"] = new_wp_radius
+            self.circles_lg.removeLayer(marker["circle"])
+            marker["circle"] = L.circle([marker["enlem"], marker["boylam"]],
+                                        {'radius': self.ui.le_wpRadius.text(), 'color': 'white', 'fillOpacity': 0.1,
+                                         'weight': 2})
+            self.circles_lg.addLayer(marker["circle"])
+
+    def selected_mission(self, new_mission):
+        mission_select = self.sender().objectName()
+        list(self.markers.values())[int(mission_select[mission_select.rfind('_') + 1:])]["komut"] = new_mission
+
+        if new_mission in ["TAKEOFF", "LAND"]:
+            self.planning_map.runJavaScript(
+                f'''markerIcon = L.divIcon({{
+                                            className: 'icon',
+                                            html: '<div style="width: 30px; height: 50px; display: flex; align-items: center; justify-content: center; \
+                                                    position: absolute; top: -310%; left: -78%;"> \
+                                                    <div style="width: 30px; height: 50px; position: absolute;"> \
+                                                        <img src="https://lh3.googleusercontent.com/MReUGcoXc4E7XpgQF58MKGwdMCVz19m3Jpwt1IHortJT-nB4-RzPLr3nsXmcfYXyl-A1QvxD3zcU_kUNM8g2OjcE5Rge3AZWG8c9r4ISSFz76qBwHkZ5pCSMvM8JNBqiymUpwluT7Q=w2400" style="width:30px;"> \
+                                                    </div> \
+                                                    <span style="color: black; font-size: 13px; z-index: 2; position: absolute; top: 4px;">{new_mission[0]}</span> \
+                                                  </div>'
+                                        }});
+                                        {list(self.markers.values())[int(mission_select[mission_select.rfind('_') + 1:])]["marker"].jsName}.setIcon(markerIcon);
+                                        '''
+            )
+        else:
+            self.planning_map.runJavaScript(
+                f'''markerIcon = L.divIcon({{
+                                                        className: 'icon',
+                                                        html: '<div style="width: 30px; height: 50px; display: flex; align-items: center; justify-content: center; \
+                                                                position: absolute; top: -310%; left: -78%;"> \
+                                                                <div style="width: 30px; height: 50px; position: absolute;"> \
+                                                                    <img src="https://lh3.googleusercontent.com/MReUGcoXc4E7XpgQF58MKGwdMCVz19m3Jpwt1IHortJT-nB4-RzPLr3nsXmcfYXyl-A1QvxD3zcU_kUNM8g2OjcE5Rge3AZWG8c9r4ISSFz76qBwHkZ5pCSMvM8JNBqiymUpwluT7Q=w2400" style="width:30px;"> \
+                                                                </div> \
+                                                                <span style="color: black; font-size: 13px; z-index: 2; position: absolute; top: 4px;">{list(self.markers.values())[int(mission_select[mission_select.rfind('_') + 1:])]["row_no"]}</span> \
+                                                              </div>'
+                                                    }});
+                                                    {list(self.markers.values())[int(mission_select[mission_select.rfind('_') + 1:])]["marker"].jsName}.setIcon(markerIcon);
+                                                    '''
+            )
+
+        """
+        mission_select = self.sender().objectName()
+        list(self.markers.values())[int(mission_select[mission_select.rfind('_') + 1:])]["komut"] = new_mission
+         self.clear_map(is_markers_clear=False)
+        self.draw_all_markers()
+        
+        """
+
     def create_table(self):
         self.ui.tw_waypoints.horizontalHeader().setVisible(True)
+        self.ui.tw_waypoints.horizontalHeader().setHighlightSections(False)
         self.ui.tw_waypoints.verticalHeader().setVisible(True)
 
         self.ui.tw_waypoints.setRowCount(1)
@@ -122,7 +228,6 @@ class HurturkGui(QMainWindow):
              'Enlem', 'Boylam', 'İrtifa', 'Sil?'])
 
         self.ui.tw_waypoints.setColumnWidth(0, 110)
-
 
         self.ui.tw_waypoints.verticalHeader().setSectionResizeMode(QHeaderView.Fixed)
         self.ui.tw_waypoints.verticalHeader().setDefaultSectionSize(27)
@@ -154,8 +259,203 @@ class HurturkGui(QMainWindow):
     ##           HARİTA FONKSİYONLARI            ##
     ###############################################
 
-    def add_marker(self):
-        pass
+    def create_planning_map(self):
+        print("aaaa")
+        self.planning_map_widget = MapWidget()
+        self.ui.vbl_miniMap.addWidget(self.planning_map_widget)
+
+        self.planning_map = L.map(self.planning_map_widget)
+        self.planning_map.setView([40.215725, 29.080278], 18)
+
+        self.tile_layer = L.tileLayer(
+            'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
+        self.tile_layer.addTo(self.planning_map)
+
+    def add_marker(self, point, mission="WAYPOINT", param1="", param2="", param3="", param4="", irtifa=0):
+        marker_ok = True
+
+        for marker_id, dict in self.markers.items():
+            if geopy.distance.distance([point['latlng']['lat'], point['latlng']['lng']], [float(dict["enlem"]), float(dict["boylam"])]).m < float(self.ui.le_wpRadius.text()):
+                marker_ok = False
+
+        if marker_ok:
+            self.marker = L.marker(point['latlng'])
+            circle = L.circle(point['latlng'],
+                              {'radius': self.ui.le_wpRadius.text(), 'color': 'white', 'fillOpacity': 0.1,
+                               'weight': 2})  # kesikli yapmak için 'dashArray': '3, 20' ekle
+
+            # TODO: BU KISIMDA RESMİN ABSOLUTE PATH OLMASINA BİR ÇÖZÜM BUL
+            self.planning_map.runJavaScript(
+                f'''markerIcon = L.divIcon({{
+                                    className: 'icon',
+                                    html: '<div style="width: 30px; height: 50px; display: flex; align-items: center; justify-content: center; \
+                                            position: absolute; top: -310%; left: -78%;"> \
+                                            <div style="width: 30px; height: 50px; position: absolute;"> \
+                                                <img src="https://lh3.googleusercontent.com/MReUGcoXc4E7XpgQF58MKGwdMCVz19m3Jpwt1IHortJT-nB4-RzPLr3nsXmcfYXyl-A1QvxD3zcU_kUNM8g2OjcE5Rge3AZWG8c9r4ISSFz76qBwHkZ5pCSMvM8JNBqiymUpwluT7Q=w2400" style="width:30px;"> \
+                                            </div> \
+                                            <span style="color: black; font-size: 13px; z-index: 2; position: absolute; top: 4px;">{self.waypoints_id_no if mission == "WAYPOINT" else mission[0]}</span> \
+                                          </div>'
+                                }});
+                                {self.marker.jsName}.setIcon(markerIcon);
+                                ''')
+
+            self.marker.layerId = f"m_{self.waypoints_id_no}"
+            self.markers_lg.addLayer(self.marker)
+            self.circles_lg.addLayer(circle)
+
+            self.markers[self.marker.layerId] = {"marker": self.marker,
+                                                 "circle": circle,
+                                                 "row_no": len(self.markers.keys()),
+                                                 "komut": mission,
+                                                 "param1": param1,
+                                                 "param2": param2,
+                                                 "param3": param3,
+                                                 "param4": param4,
+                                                 "wp_rad": int(self.ui.le_wpRadius.text()),
+                                                 "irtifa": irtifa if irtifa != 0 else int(self.ui.le_defaultAlt.text()),
+                                                 "enlem": point['latlng']['lat'],
+                                                 "boylam": point['latlng']['lng'],
+                                                 }
+
+            mission_selection = QComboBox()
+            mission_selection.setObjectName(f"ms_{self.waypoints_id_no}")
+            missions = ['TAKEOFF', 'WAYPOINT', 'LAND']
+            mission_selection.addItems(missions)
+            mission_selection.setCurrentText(mission)
+            mission_selection.currentTextChanged.connect(self.selected_mission)
+
+            delete_button = QPushButton()
+            delete_button.setStyleSheet("""QPushButton {border: none;} QPushButton::hover {background-color: red;}""")
+            delete_button.setText('X')
+            delete_button.setObjectName(f'bt_{self.waypoints_id_no}')
+            delete_button.clicked.connect(self.delete_marker)
+
+            self.ui.tw_waypoints.setRowCount(len(self.markers.keys()))
+            self.ui.tw_waypoints.setCellWidget(len(self.markers.keys()) - 1, 0, mission_selection)
+            self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 1,
+                                         QTableWidgetItem(self.markers[self.marker.layerId]["param1"]))
+            self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 2,
+                                         QTableWidgetItem(self.markers[self.marker.layerId]["param2"]))
+            self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 3,
+                                         QTableWidgetItem(self.markers[self.marker.layerId]["param3"]))
+            self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 4,
+                                         QTableWidgetItem(self.markers[self.marker.layerId]["param4"]))
+            self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 5,
+                                         QTableWidgetItem(f'{self.markers[self.marker.layerId]["enlem"]:.4f}'))
+            self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 6,
+                                         QTableWidgetItem(f'{self.markers[self.marker.layerId]["boylam"]:.4f}'))
+            self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 7,
+                                         QTableWidgetItem(str(self.markers[self.marker.layerId]["irtifa"])))
+            self.ui.tw_waypoints.setCellWidget(len(self.markers.keys()) - 1, 8, delete_button)
+
+            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 5).setFlags(Qt.ItemIsEditable)
+            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 6).setFlags(Qt.ItemIsEditable)
+
+            if len(self.markers.items()) > 1:
+                self.draw_polyline()
+
+            self.waypoints_id_no += 1
+
+    def delete_marker(self):
+        # TODO: ROW NO İLE BİRLİKTE SÖZLÜKTEN AYNI SIRADAKİNİ SİL.
+        button = self.sender()
+        marker_id = f"m_{int(button.objectName()[button.objectName().rfind('_') + 1:])}"
+
+        for i in range(self.markers[marker_id]["row_no"] + 1, self.ui.tw_waypoints.rowCount()):
+            for id, dict in self.markers.items():
+                if dict["row_no"] == i:
+                    dict["row_no"] -= 1
+
+        self.ui.tw_waypoints.removeRow(self.markers[marker_id]["row_no"])
+        del self.markers[marker_id]
+
+        self.clear_map(is_markers_clear=False)
+        self.draw_all_markers()
+
+        if self.ui.tw_waypoints.rowCount() == 0:
+            self.ui.tw_waypoints.setRowCount(1)
+
+        self.draw_polyline()
+
+    def draw_all_markers(self, values=None):
+
+        if values:
+            tmp_dict = values
+        else:
+            tmp_dict = self.markers.copy().values()
+            self.markers.clear()
+
+        for tmp_marker in tmp_dict:
+            coord = {'latlng': {'lat': tmp_marker["enlem"], 'lng': tmp_marker["boylam"]}}
+            self.add_marker(coord, tmp_marker["komut"])
+
+    def draw_polyline(self):
+        self.lines_lg.clearLayers()
+
+        tmp_marker_list = list(self.markers.items())
+        for i in range(len(tmp_marker_list) - 1):
+            polyline = L.polyline([tmp_marker_list[i][1]["marker"].latLng, tmp_marker_list[i + 1][1]["marker"].latLng],
+                                  {'color': 'yellow'})
+            polyline.bindTooltip(
+                f"{geopy.distance.distance(polyline.latLngs[0].values(), polyline.latLngs[1].values()).m:.3f} metre")
+            self.lines_lg.addLayer(polyline)
+
+    def clear_map(self, is_markers_clear=True):
+        self.markers_lg.clearLayers()
+        self.circles_lg.clearLayers()
+        self.lines_lg.clearLayers()
+        if is_markers_clear:
+            self.markers.clear()
+            self.ui.tw_waypoints.clearContents()
+            self.ui.tw_waypoints.setRowCount(1)
+        self.waypoints_id_no = 0
+
+    def add_geofence_marker(self, point):
+        marker = L.marker(point['latlng'])
+
+        # TODO: BU KISIMDA RESMİN ABSOLUTE PATH OLMASINA BİR ÇÖZÜM BUL
+        self.planning_map.runJavaScript(
+            f'''markerIcon = L.divIcon({{
+                                            className: 'icon',
+                                            html: '<div style="width: 30px; height: 50px; display: flex; align-items: center; justify-content: center; \
+                                                    position: absolute; top: -310%; left: -78%;"> \
+                                                    <div style="width: 30px; height: 50px; position: absolute;"> \
+                                                        <img src="https://lh3.googleusercontent.com/EhOwwR58k5xYmkolDznNYglOqd-UBjBBi6qaj5BHJTTg_5r7aTuaIL2xUzIXVDkMrraGa4osRIMrPlFy9tnqOa4hpdptLV_GfaiBFWrhsPGPtLHeqaHeZPMoplV7VAHb6-kSLgD20g=w2400" style="width:30px;"> \
+                                                    </div> \
+                                                    <span style="color: black; font-size: 13px; z-index: 2; position: absolute; top: 4px;">{self.geofence_id_no}</span> \
+                                                  </div>'
+                                        }});
+                                        {marker.jsName}.setIcon(markerIcon);
+                                        '''
+        )
+
+        marker.layerId = f"g_{self.waypoints_id_no}"
+
+        self.geofence_markers_lg.addLayer(marker)
+        self.geofence_markers.append(list(marker.latLng.values()))
+        self.geofence_id_no += 1
+
+    def clear_geofence(self):
+        self.geofence_markers_lg.clearLayers()
+        self.geofence_markers.clear()
+        if self.polygon:
+            self.planning_map.removeLayer(self.temp)
+
+        self.geofence_id_no = 0
+        self.ui.cb_geofenceOnOff.setDisabled(False)
+        self.polygon = None
+
+    def complete_geofence(self):
+        if len(self.geofence_markers) == 0:
+            QMessageBox.warning(self, "Hata", "Önce çizsene kardeşim.")
+        else:
+            if self.polygon is None:
+                self.geofence_markers_lg.clearLayers()
+                self.polygon = L.polygon(self.geofence_markers)
+                self.planning_map.addLayer(self.polygon)
+                self.ui.cb_geofenceOnOff.setChecked(False)
+                self.ui.cb_geofenceOnOff.setDisabled(True)
+                self.temp = self.polygon
 
     ###############################################
     ##         PENCERE KONTROL DÜĞMELERİ         ##
