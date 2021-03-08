@@ -1,5 +1,6 @@
 # created by Hurturk UAV Team (2021)
 import datetime
+import json
 from collections import OrderedDict
 
 import geopy.distance
@@ -68,6 +69,8 @@ class HurturkGui(QMainWindow):
         # self.ui.bt_maximize.clicked.connect(self.maximize_window)
         self.ui.bt_minimize.clicked.connect(self.minimize_window)
         self.ui.le_wpRadius.textChanged.connect(self.changed_wp_rad)
+        self.ui.bt_saveToFile.clicked.connect(self.save_missions)
+        self.ui.bt_loadFromFile.clicked.connect(self.load_missions)
 
         # Parametre sekmesi widget olarak eklenir.
         self.parameters_widget = ParameterWidget()
@@ -102,11 +105,47 @@ class HurturkGui(QMainWindow):
         self.ui.bt_clearGeofence.clicked.connect(self.clear_geofence)
         self.ui.bt_completeGeofence.clicked.connect(self.complete_geofence)
 
-
     ###############################################
     ##             GUI FONKSİYONLARI             ##
     ###############################################
 
+    def save_missions(self):
+        if len(self.markers.keys()) == 0:
+            QMessageBox.warning(self, "Hata", "Önce görev atasana kardeşim.")
+        else:
+            dialog = QFileDialog()
+            dialog.setDefaultSuffix(".json")
+            file = dialog.getSaveFileName(None, "Görevi kaydetmek için yol seçin", "", "JSON (*.json)")
+
+            if file:
+                wp_list = []
+
+                for dict in self.markers.values():
+                    temp_markers = {}
+                    for key in dict:
+                        if not key in ["marker", "circle", "row_no", "wp_rad"]:
+                            temp_markers[key] = dict[key]
+                    wp_list.append(temp_markers)
+
+                if file[0].rfind('.') == -1:
+                    print("aaa")
+                    with open(f'{file[0]}.json', 'w') as json_file:
+                        json.dump(wp_list, json_file, indent=2)
+                else:
+                    with open(file[0], 'w') as json_file:
+                        json.dump(wp_list, json_file, indent=2)
+
+    def load_missions(self):
+        dialog = QFileDialog()
+        dialog.setDefaultSuffix(".json")
+        file = dialog.getOpenFileName(None, "Görev yüklemek için JSON dosyası seçin", "", "JSON (*.json)")
+
+        if file:
+            with open(file[0]) as f:
+                data = json.load(f)
+
+            self.clear_map()
+            self.draw_all_markers(values=data)
 
     def changed_tab(self, index):
         if index == 0:
@@ -123,45 +162,6 @@ class HurturkGui(QMainWindow):
         elif index == 0:
             self.planning_map.clicked.disconnect()
             self.planning_map.clicked.connect(self.add_marker)
-
-    def load_flight_plan(self):
-        pass
-
-    def save_mission_plan(self):
-        if len(self.markers.keys()) == 0:
-            QMessageBox.warning(self, "Hata", "Önce görev atasana kardeşim.")
-        else:
-            dialog = QFileDialog()
-            dialog.setDefaultSuffix(".json")
-            file = dialog.getSaveFileName(None, "Görevi kaydetmek için yol seçin", "", "JSON (*.json)")
-            print(file)
-            if dialog.result() == QFileDialog.Accepted:
-                temp_markers = self.markers.copy().values()
-                for tmp_marker in temp_markers:
-                    del tmp_marker["marker"]
-                    del tmp_marker["circle"]
-                    del tmp_marker["row_no"]
-                    del tmp_marker["wp_rad"]
-                if file[0].rfind('.') == -1:
-                    print("aaa")
-                    with open(f'{file[0]}.json', 'w') as json_file:
-                        json.dump(list(temp_markers), json_file, indent=2)
-                else:
-                    with open(file[0], 'w') as json_file:
-                        json.dump(list(temp_markers), json_file, indent=2)
-
-    def load_mission_plan(self):
-        dialog = QFileDialog()
-        dialog.setDefaultSuffix(".json")
-        file = dialog.getOpenFileName(None, "Görev yüklemek için JSON dosyası seçin", "", "JSON (*.json)")
-
-        if dialog.result() == QFileDialog.Accepted:
-            with open(file[0]) as f:
-                data = json.load(f)
-
-            self.clear_map()
-            self.draw_all_markers(values=data)
-
 
     def changed_wp_rad(self, new_wp_radius):
         for marker in self.markers.values():
