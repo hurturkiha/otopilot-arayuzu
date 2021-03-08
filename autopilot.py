@@ -1,19 +1,27 @@
 import math
+import time
 
 import dronekit
+from PyQt5 import QtCore
 from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtGui import QPainter, QPixmap
 from pyqtlet import L
 from pymavlink import mavutil
 
 
 class Autopilot():
-    def __init__(self, ui, markers, connection_address, map):
+    def __init__(self, ui, markers, attitude_indicator, connection_address, map):
         super().__init__()
 
         self.ui = ui
         self.map = map
         self.markers_dict = markers
+        self.attitude_indicator = attitude_indicator
+
+        self.second = 0
+        self.flight_timer = QTimer()
+        self.flight_timer.timeout.connect(self.flight_time)
+        self.flight_time()
 
         self.location_list = []
 
@@ -21,7 +29,7 @@ class Autopilot():
         self.map.addLayer(self.followerline_lg)
 
         try:
-            self.vehicle = dronekit.connect('tcp:127.0.0.1:14550')
+            self.vehicle = dronekit.connect(connection_address)
         except:
             print("Bağlantı kurulamadı!")
 
@@ -65,6 +73,13 @@ class Autopilot():
 
         self.ui.le_flightMode.setText(str(self.vehicle.mode.name))
 
+    def flight_time(self):
+        self.ui.le_flightTime.setText(f"{self.second // 60}:{self.second % 60} dk")
+        self.ui.le_flightTime_2.setText(f"{self.second // 60}:{self.second % 60} dk")
+        self.ui.le_totalFlightTime.setText(f"{(self.second+ 1000) // 60}:{(self.second+1000) % 60} dk")
+
+        self.second += 1
+
     def add_command(self):
         cmds = self.vehicle.commands
         cmds.clear()
@@ -88,7 +103,9 @@ class Autopilot():
                                  0, 0, 0, mission["enlem"],
                                  mission["boylam"],
                                  mission["irtifa"]))
+        print("aabbab1")
         cmds.upload()
+        print("aabbab2")
         self.vehicle.commands.next = 0
 
     def clear_track(self):
@@ -103,28 +120,79 @@ class Autopilot():
         else:
             self.ui.le_groundSpeed.setText(f"{value:.2f}")
 
+        image = QPixmap(":/hud/icons/speed-indicator-tick.png")
+        canvas = QPixmap(image.size())
+        canvas2 = QPixmap(image.size())
+
+        canvas.fill(QtCore.Qt.transparent)
+        canvas2.fill(QtCore.Qt.transparent)
+
+        p = QPainter(canvas)
+        p2 = QPainter(canvas2)
+
+        p.setRenderHint(QPainter.Antialiasing)
+        p.setRenderHint(QPainter.SmoothPixmapTransform)
+        p.setRenderHint(QPainter.HighQualityAntialiasing)
+        p.translate(canvas.size().width() / 2, canvas.size().height() / 2)
+        p2.setRenderHint(QPainter.Antialiasing)
+        p2.setRenderHint(QPainter.SmoothPixmapTransform)
+        p2.setRenderHint(QPainter.HighQualityAntialiasing)
+        p2.translate(canvas2.size().width() / 2, canvas2.size().height() / 2)
+
+        if self.ui.le_groundSpeed.text() == '' or self.ui.le_airSpeed.text() == '':
+            p.rotate(0)
+            p2.rotate(0)
+        else:
+            p.rotate(4.5 * float(self.ui.le_groundSpeed.text()))
+            p2.rotate(4.5 * float(self.ui.le_airSpeed.text()))
+
+        p.translate(-canvas.size().width() / 2, -canvas.size().height() / 2)
+        p.drawPixmap(0, 0, image)
+        p2.translate(-canvas.size().width() / 2, -canvas.size().height() / 2)
+        p2.drawPixmap(0, 0, image)
+
+        p.end()
+        p2.end()
+
+        self.ui.lb_groundSpeedIndicatorTick.setPixmap(canvas)
+        self.ui.lb_airSpeedIndicatorTick.setPixmap(canvas2)
+
     def attitude_callback(self, vehicle, attr_name, value):
         self.ui.le_roll.setText(f"{value.roll * 180 / math.pi:.4f}")
         self.ui.le_pitch.setText(f"{value.pitch * 180 / math.pi:.4f}")
         self.ui.le_yaw.setText(f"{value.yaw * 180 / math.pi:.4f}")
-        # if self.vehicle.armed:
-        #     self.attitude_indicator.ui.lb_armStatus.setText("ARMED")
-        # else:
-        #     self.attitude_indicator.ui.lb_armStatus.setText("DISARMED")
+
+        if self.vehicle.armed:
+            self.attitude_indicator.ui.lb_armStatus.setText("ARMED")
+        else:
+            self.attitude_indicator.ui.lb_armStatus.setText("DISARMED")
 
     def gpsinfo_callback(self, vehicle, attr_name, value):
         self.ui.le_sat.setText(f"{value.satellites_visible}")
 
     def set_armdisarm(self):
-        if self.ui.bt_arm.text() == "Arm":
+        if self.ui.bt_arm.text() == "ARM":
+
+            while not self.vehicle.is_armable:
+                print("a")
+                time.sleep(1)
+
             self.vehicle.armed = True
-            self.ui.bt_arm.setText("Disarm")
+
+            # Confirm vehicle armed before attempting to take off
+            while not self.vehicle.armed:
+                print("b")
+                time.sleep(1)
+
+            self.ui.bt_arm.setText("DISARM")
         else:
             self.vehicle.armed = False
-            self.ui.bt_arm.setText("Arm")
+            self.ui.bt_arm.setText("ARM")
 
     def set_auto_mode(self):
         self.vehicle.mode = 'AUTO'
+
+        self.flight_timer.start(1000)
 
     def set_manual_mode(self):
         self.vehicle.mode = 'MANUAL'

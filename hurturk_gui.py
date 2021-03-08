@@ -11,6 +11,7 @@ from PyQt5 import QtTest, QtCore
 from PyQt5.QtCore import *
 from pyqtlet import *
 
+from attitude_indicator import AttitudeIndicator
 from autopilot import Autopilot
 from parameters_widget import ParameterWidget
 
@@ -80,6 +81,9 @@ class HurturkGui(QMainWindow):
         self.parameters_widget = ParameterWidget()
         self.ui.vl_parameters.addWidget(self.parameters_widget)
 
+        self.attitude_indicator_widget = AttitudeIndicator(self.ui)
+        self.ui.vbl_hud.addWidget(self.attitude_indicator_widget)
+
         # Ekranda zaman göstermek üzere timer oluşturulur.
         show_time_timer = QTimer(self)
         show_time_timer.timeout.connect(self.show_time)
@@ -111,6 +115,9 @@ class HurturkGui(QMainWindow):
 
         self.dronekit_widget = None
 
+        self.ui.le_roll.textChanged.connect(self.changed_roll)
+        self.ui.le_pitch.textChanged.connect(self.changed_pitch)
+
     ###############################################
     ##             GUI FONKSİYONLARI             ##
     ###############################################
@@ -125,8 +132,8 @@ class HurturkGui(QMainWindow):
         if self.ui.bt_connect.text() == "Bağlan":
 
             if self.ui.cb_simulation.isChecked():
-                self.dronekit_widget = Autopilot(self.ui, self.markers,
-                                                 self.ui.cb_connectionAdress.currentText() + ":" + self.ui.cb_port.currentText(),
+                self.dronekit_widget = Autopilot(self.ui, self.markers, self.attitude_indicator_widget,
+                                                 "tcp:"+self.ui.cb_connectionAdress.currentText()+":"+ self.ui.cb_port.currentText(),
                                                  self.planning_map)
 
                 self.ui.bt_connect.setText("Bağlantıyı Kes")
@@ -158,6 +165,8 @@ class HurturkGui(QMainWindow):
                     """
                 )
         else:
+            self.dronekit_widget.vehicle.close()
+
             self.ui.bt_connect.setText("Bağlan")
             self.ui.bt_connect.setStyleSheet(
                 """
@@ -318,11 +327,33 @@ class HurturkGui(QMainWindow):
         comp_date = datetime.datetime(2021, 9, 13)
         delta1 = comp_date - now_time
 
-        report_result_date = datetime.datetime(2021, 3, 15)
+        report_result_date = datetime.datetime(2021, 4, 5)
         delta2 = report_result_date - now_time
 
         self.ui.lb_status.setText(
             f"Yarışmaya <b>{delta1.days} gün</b>, kavramsal tasarım rapor sonucunun açıklanmasına ise <b>{delta2.days} gün</b> kaldı.")
+
+    ###############################################
+    ##           HARİTA FONKSİYONLARI            ##
+    ###############################################
+
+    def change_attitude(self):
+        self.changed_pitch()
+        self.changed_roll()
+
+    def changed_pitch(self):
+        pitch_deg = float(self.ui.le_pitch.text())
+
+        self.attitude_indicator_widget.angles["pitch"] = pitch_deg
+
+        self.attitude_indicator_widget.rotate_pitch()
+        self.attitude_indicator_widget.rotate_background()
+
+    def changed_roll(self):
+        roll_deg = float(self.ui.le_roll.text())
+        self.attitude_indicator_widget.angles["roll"] = roll_deg
+        self.attitude_indicator_widget.rotate_roll()
+        self.attitude_indicator_widget.rotate_background()
 
     ###############################################
     ##           HARİTA FONKSİYONLARI            ##

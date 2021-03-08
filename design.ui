@@ -37,7 +37,7 @@
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_mainScreen">
      <attribute name="title">
@@ -517,7 +517,7 @@ QPushButton:active {
         <item row="1" column="0">
          <widget class="QLabel" name="lb_flightTime">
           <property name="text">
-           <string>Uçuş Süresi (dk): </string>
+           <string>Uçuş Süresi:      </string>
           </property>
          </widget>
         </item>
@@ -587,7 +587,7 @@ QPushButton:active {
      <widget class="QWidget" name="verticalLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>688</x>
+        <x>685</x>
         <y>10</y>
         <width>726</width>
         <height>701</height>
@@ -763,58 +763,11 @@ QPushButton:active {
        </item>
       </layout>
      </widget>
-     <widget class="QLabel" name="lb_cameraTime">
-      <property name="geometry">
-       <rect>
-        <x>355</x>
-        <y>18</y>
-        <width>101</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Ubuntu</family>
-        <pointsize>13</pointsize>
-        <weight>50</weight>
-        <italic>false</italic>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>00:03:20</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lb_record">
-      <property name="geometry">
-       <rect>
-        <x>335</x>
-        <y>20</y>
-        <width>20</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QLabel {
-	border-radius: 10px;
-	background-color: red;
-}</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QLabel" name="lb_airSpeed_2">
       <property name="geometry">
        <rect>
         <x>566</x>
-        <y>650</y>
+        <y>656</y>
         <width>51</width>
         <height>31</height>
        </rect>
@@ -831,7 +784,7 @@ QPushButton:active {
       <property name="geometry">
        <rect>
         <x>385</x>
-        <y>650</y>
+        <y>656</y>
         <width>51</width>
         <height>31</height>
        </rect>
@@ -844,7 +797,7 @@ QPushButton:active {
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="lb_airSpeedIndicatorTick_2">
+     <widget class="QLabel" name="lb_airSpeedIndicatorTick">
       <property name="geometry">
        <rect>
         <x>506</x>
@@ -872,7 +825,7 @@ QPushButton:active {
      <widget class="QCheckBox" name="cb_followUav">
       <property name="geometry">
        <rect>
-        <x>1279</x>
+        <x>1273</x>
         <y>30</y>
         <width>121</width>
         <height>23</height>
@@ -885,7 +838,7 @@ QPushButton:active {
        <string>Uçağı Takip Et</string>
       </property>
      </widget>
-     <widget class="QLabel" name="lb_airSpeedIndicatorTick_3">
+     <widget class="QLabel" name="lb_groundSpeedIndicatorTick">
       <property name="geometry">
        <rect>
         <x>325</x>
@@ -910,6 +863,22 @@ QPushButton:active {
        <bool>true</bool>
       </property>
      </widget>
+     <zorder>verticalLayoutWidget</zorder>
+     <zorder>gb_speedInfo</zorder>
+     <zorder>gb_imuInfo</zorder>
+     <zorder>gb_gpsInfo</zorder>
+     <zorder>bt_arm</zorder>
+     <zorder>lb_miniCamera</zorder>
+     <zorder>gb_flightInfo</zorder>
+     <zorder>lb_groundSpeedIndicator</zorder>
+     <zorder>lb_airSpeedIndicator</zorder>
+     <zorder>verticalLayoutWidget_2</zorder>
+     <zorder>layoutWidget</zorder>
+     <zorder>lb_airSpeedIndicatorTick</zorder>
+     <zorder>cb_followUav</zorder>
+     <zorder>lb_groundSpeedIndicatorTick</zorder>
+     <zorder>lb_airSpeed_2</zorder>
+     <zorder>lb_groundSpeed_2</zorder>
     </widget>
     <widget class="QWidget" name="tab_planningMap">
      <attribute name="title">
@@ -1238,6 +1207,9 @@ QPushButton:active {
             <height>16777215</height>
            </size>
           </property>
+          <property name="text">
+           <string>-</string>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -1295,6 +1267,9 @@ QPushButton:active {
             <width>150</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="text">
+           <string>-</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
