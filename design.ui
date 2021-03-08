@@ -921,7 +921,7 @@ QPushButton:active {
         <x>10</x>
         <y>10</y>
         <width>726</width>
-        <height>701</height>
+        <height>703</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="vbl_planningMap"/>
@@ -944,8 +944,8 @@ QPushButton:active {
       </property>
       <property name="iconSize">
        <size>
-        <width>25</width>
-        <height>25</height>
+        <width>22</width>
+        <height>22</height>
        </size>
       </property>
      </widget>
@@ -967,8 +967,8 @@ QPushButton:active {
       </property>
       <property name="iconSize">
        <size>
-        <width>25</width>
-        <height>25</height>
+        <width>22</width>
+        <height>22</height>
        </size>
       </property>
      </widget>
@@ -990,8 +990,8 @@ QPushButton:active {
       </property>
       <property name="iconSize">
        <size>
-        <width>25</width>
-        <height>25</height>
+        <width>22</width>
+        <height>22</height>
        </size>
       </property>
      </widget>
@@ -1478,7 +1478,7 @@ QPushButton:active {
        <rect>
         <x>1095</x>
         <y>143</y>
-        <width>311</width>
+        <width>317</width>
         <height>27</height>
        </rect>
       </property>

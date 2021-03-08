@@ -94,13 +94,13 @@ class HurturkGui(QMainWindow):
         self.circles_lg = L.layerGroup()
         self.lines_lg = L.layerGroup()
         self.geofence_markers_lg = L.layerGroup()
-        
+
         self.planning_map.addLayer(self.geofence_markers_lg)
         self.planning_map.addLayer(self.markers_lg)
         self.planning_map.addLayer(self.circles_lg)
         self.planning_map.addLayer(self.lines_lg)
 
-        self.ui.cb_geofenceOnOff.stateChanged.connect(self.isGeofenceOnOff)
+        self.ui.cb_geofenceOnOff.stateChanged.connect(self.is_geofence_on_off)
         self.ui.bt_clearMap.clicked.connect(lambda: self.clear_map(is_markers_clear=True))
         self.ui.bt_clearGeofence.clicked.connect(self.clear_geofence)
         self.ui.bt_completeGeofence.clicked.connect(self.complete_geofence)
@@ -120,15 +120,14 @@ class HurturkGui(QMainWindow):
             if file:
                 wp_list = []
 
-                for dict in self.markers.values():
+                for tmp_dict in self.markers.values():
                     temp_markers = {}
-                    for key in dict:
-                        if not key in ["marker", "circle", "row_no", "wp_rad"]:
-                            temp_markers[key] = dict[key]
+                    for key in tmp_dict:
+                        if key not in ["marker", "circle", "row_no", "wp_rad"]:
+                            temp_markers[key] = tmp_dict[key]
                     wp_list.append(temp_markers)
 
                 if file[0].rfind('.') == -1:
-                    print("aaa")
                     with open(f'{file[0]}.json', 'w') as json_file:
                         json.dump(wp_list, json_file, indent=2)
                 else:
@@ -155,7 +154,7 @@ class HurturkGui(QMainWindow):
             self.ui.vbl_planningMap.addWidget(self.planning_map_widget)
             self.planning_map.clicked.connect(self.add_marker)
 
-    def isGeofenceOnOff(self, index):
+    def is_geofence_on_off(self, index):
         if index == 2:
             self.planning_map.clicked.disconnect()
             self.planning_map.clicked.connect(self.add_geofence_marker)
@@ -275,7 +274,9 @@ class HurturkGui(QMainWindow):
         marker_ok = True
 
         for marker_id, dict in self.markers.items():
-            if geopy.distance.distance([point['latlng']['lat'], point['latlng']['lng']], [float(dict["enlem"]), float(dict["boylam"])]).m < float(self.ui.le_wpRadius.text()):
+            if geopy.distance.distance([point['latlng']['lat'], point['latlng']['lng']],
+                                       [float(dict["enlem"]), float(dict["boylam"])]).m < float(
+                self.ui.le_wpRadius.text()):
                 marker_ok = False
 
         if marker_ok:
