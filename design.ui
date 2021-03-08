@@ -37,7 +37,7 @@
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_mainScreen">
      <attribute name="title">
@@ -412,9 +412,9 @@
        <string notr="true">QPushButton {
 	box-shadow:inset 0px 1px 0px 0px #f29c93;
 	background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
-	background-color:rgb(54, 161, 30);
+	background-color: rgb(0,0,0);
 	border-radius:6px;
-	border:1px solid rgb(54, 161, 30);
+	border:1px solid rgb(0,0,0);
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
@@ -426,7 +426,7 @@
 }
 QPushButton:hover {
 	background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
-	background-color: rgb(54, 141, 30);
+	background-color:  rgb(50,50,50);
 }
 QPushButton:active {
 	position:relative;
@@ -517,7 +517,7 @@ QPushButton:active {
         <item row="1" column="0">
          <widget class="QLabel" name="lb_flightTime">
           <property name="text">
-           <string>Uçuş Süresi (min):</string>
+           <string>Uçuş Süresi (dk): </string>
           </property>
          </widget>
         </item>
@@ -1941,7 +1941,7 @@ QPushButton:active {
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="wid_simConnect">
      <widget class="QComboBox" name="cb_connectionAdress">

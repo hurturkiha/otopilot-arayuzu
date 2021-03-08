@@ -11,6 +11,7 @@ from PyQt5 import QtTest, QtCore
 from PyQt5.QtCore import *
 from pyqtlet import *
 
+from autopilot import Autopilot
 from parameters_widget import ParameterWidget
 
 import splash_design_ui
@@ -72,6 +73,8 @@ class HurturkGui(QMainWindow):
         self.ui.le_wpRadius.textChanged.connect(self.changed_wp_rad)
         self.ui.bt_saveToFile.clicked.connect(self.save_missions)
         self.ui.bt_loadFromFile.clicked.connect(self.load_missions)
+        self.ui.cb_simulation.stateChanged.connect(self.isSimulation)
+        self.ui.bt_connect.clicked.connect(self.connect_uav)
 
         # Parametre sekmesi widget olarak eklenir.
         self.parameters_widget = ParameterWidget()
@@ -106,9 +109,83 @@ class HurturkGui(QMainWindow):
         self.ui.bt_clearGeofence.clicked.connect(self.clear_geofence)
         self.ui.bt_completeGeofence.clicked.connect(self.complete_geofence)
 
+        self.dronekit_widget = None
+
     ###############################################
     ##             GUI FONKSİYONLARI             ##
     ###############################################
+
+    def isSimulation(self, index):
+        if index == 0:
+            self.ui.sw_connectionCB.setCurrentIndex(1)
+        else:
+            self.ui.sw_connectionCB.setCurrentIndex(0)
+
+    def connect_uav(self):
+        if self.ui.bt_connect.text() == "Bağlan":
+
+            if self.ui.cb_simulation.isChecked():
+                self.dronekit_widget = Autopilot(self.ui, self.markers,
+                                                 self.ui.cb_connectionAdress.currentText() + ":" + self.ui.cb_port.currentText(),
+                                                 self.planning_map)
+
+                self.ui.bt_connect.setText("Bağlantıyı Kes")
+                self.ui.bt_connect.setStyleSheet(
+                    """
+                    QPushButton {
+                        box-shadow:inset 0px 1px 0px 0px #f29c93;
+                        background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+                        background-color: rgb(212, 0, 3);
+                        border-radius:6px;
+                        border:1px solid rgb(212, 0, 3);
+                        display:inline-block;
+                        cursor:pointer;
+                        color:#ffffff;
+                        font-family:Arial;
+                        font-size:12px;
+                        font-weight:bold;
+                        text-decoration:none;
+                        text-shadow:0px 1px 0px #b23e35;
+                    }
+                    QPushButton:hover {
+                        background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+                        background-color: rgb(191, 0, 3);
+                    }
+                    QPushButton:active {
+                        position:relative;
+                        top:1px;
+                    }
+                    """
+                )
+        else:
+            self.ui.bt_connect.setText("Bağlan")
+            self.ui.bt_connect.setStyleSheet(
+                """
+                QPushButton {
+                    box-shadow:inset 0px 1px 0px 0px #f29c93;
+                    background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+                    background-color: rgb(54, 161, 30);
+                    border-radius:6px;
+                    border:1px solid rgb(54, 161, 30);
+                    display:inline-block;
+                    cursor:pointer;
+                    color:#ffffff;
+                    font-family:Arial;
+                    font-size:12px;
+                    font-weight:bold;
+                    text-decoration:none;
+                    text-shadow:0px 1px 0px #b23e35;
+                }
+                QPushButton:hover {
+                    background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+                    background-color: rgb(54, 140, 30);
+                }
+                QPushButton:active {
+                    position:relative;
+                    top:1px;
+                }
+                """
+            )
 
     def save_missions(self):
         if len(self.markers.keys()) == 0:
@@ -252,7 +329,6 @@ class HurturkGui(QMainWindow):
     ###############################################
 
     def create_planning_map(self):
-        print("aaaa")
         self.planning_map_widget = MapWidget()
         self.ui.vbl_miniMap.addWidget(self.planning_map_widget)
 

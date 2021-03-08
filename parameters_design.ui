@@ -194,7 +194,8 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QTableWidget{
-	border: 1px solid lightgray;
+	border-top: 1px solid lightgray;
+	border-right: 1px solid lightgray;
 	outline: 0;
 	selection-background-color: white;
 }
@@ -432,6 +433,64 @@ QPushButton:active {
    </property>
    <property name="text">
     <string>Parametreleri Dosyadan Yükle</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>286</x>
+     <y>60</y>
+     <width>20</width>
+     <height>656</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_3">
+   <property name="geometry">
+    <rect>
+     <x>296</x>
+     <y>51</y>
+     <width>1111</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>1399</x>
+     <y>60</y>
+     <width>20</width>
+     <height>656</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_4">
+   <property name="geometry">
+    <rect>
+     <x>296</x>
+     <y>706</y>
+     <width>1111</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
   </widget>
  </widget>

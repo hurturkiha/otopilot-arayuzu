@@ -70,7 +70,8 @@ class Ui_Form(object):
         self.tw_parameters.setGeometry(QtCore.QRect(295, 60, 1114, 656))
         self.tw_parameters.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.tw_parameters.setStyleSheet("QTableWidget{\n"
-"    border: 1px solid lightgray;\n"
+"    border-top: 1px solid lightgray;\n"
+"    border-right: 1px solid lightgray;\n"
 "    outline: 0;\n"
 "    selection-background-color: white;\n"
 "}\n"
@@ -227,6 +228,28 @@ class Ui_Form(object):
 "}\n"
 "")
         self.bt_loadParameters.setObjectName("bt_loadParameters")
+        self.line = QtWidgets.QFrame(Form)
+        self.line.setGeometry(QtCore.QRect(286, 60, 20, 656))
+        self.line.setStyleSheet("")
+        self.line.setFrameShape(QtWidgets.QFrame.VLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
+        self.line_3 = QtWidgets.QFrame(Form)
+        self.line_3.setGeometry(QtCore.QRect(296, 51, 1111, 21))
+        self.line_3.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_3.setObjectName("line_3")
+        self.line_2 = QtWidgets.QFrame(Form)
+        self.line_2.setGeometry(QtCore.QRect(1399, 60, 20, 656))
+        self.line_2.setStyleSheet("")
+        self.line_2.setFrameShape(QtWidgets.QFrame.VLine)
+        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_2.setObjectName("line_2")
+        self.line_4 = QtWidgets.QFrame(Form)
+        self.line_4.setGeometry(QtCore.QRect(296, 706, 1111, 21))
+        self.line_4.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_4.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_4.setObjectName("line_4")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
