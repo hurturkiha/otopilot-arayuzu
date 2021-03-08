@@ -436,64 +436,8 @@ class Ui_MainWindow(object):
         self.bt_clearTrack.setIcon(icon2)
         self.bt_clearTrack.setIconSize(QtCore.QSize(22, 22))
         self.bt_clearTrack.setObjectName("bt_clearTrack")
-        self.tw_waypoints = QtWidgets.QTableWidget(self.tab_planningMap)
-        self.tw_waypoints.setGeometry(QtCore.QRect(745, 220, 661, 491))
-        self.tw_waypoints.setStyleSheet("QTableWidget{\n"
-"    border-top: 1px solid lightgray;\n"
-"    border-right: 1px solid lightgray;\n"
-"    outline: 0;\n"
-"    selection-background-color: white;\n"
-"    color: black;\n"
-"}\n"
-"\n"
-"QTableCornerButton {\n"
-"    background-color: rgba(255, 255, 255, 0);\n"
-"}\n"
-"\n"
-"QTableWidget::item{\n"
-"    border-left: 1px solid lightgray;\n"
-"    border-bottom: 1px solid lightgray;\n"
-"    color: black;\n"
-"}\n"
-"\n"
-"QTableWidget::item:focus{\n"
-"    background-color:transparent;\n"
-"    color: black;\n"
-"}\n"
-"\n"
-"QHeaderView::section {\n"
-"    background-color: rgb(238, 238, 236);\n"
-"    padding: 4px;\n"
-"    font-size: 9pt;\n"
-"    height: 18px;\n"
-"    border-style: none;\n"
-"    border-bottom: 1px solid #fffff8;\n"
-"    border-left: 1px solid lightgray;\n"
-"}\n"
-"\n"
-"QHeaderView::section:horizontal\n"
-"{\n"
-"    border-top: 1px solid #fffff8;\n"
-"}\n"
-"\n"
-"QScrollBar:vertical {\n"
-"    border: none;\n"
-"    background:white;\n"
-"    border-radius: 12px;\n"
-"    width:6px;\n"
-"    margin: 0px 0px 0px 0px;\n"
-"}\n"
-"\n"
-"QScrollBar::handle:vertical {\n"
-"   background: gray;\n"
-"    min-height: 0px;\n"
-"    border-radius: 12px;\n"
-"}")
-        self.tw_waypoints.setObjectName("tw_waypoints")
-        self.tw_waypoints.setColumnCount(0)
-        self.tw_waypoints.setRowCount(0)
         self.layoutWidget_2 = QtWidgets.QWidget(self.tab_planningMap)
-        self.layoutWidget_2.setGeometry(QtCore.QRect(744, 176, 661, 34))
+        self.layoutWidget_2.setGeometry(QtCore.QRect(746, 176, 661, 34))
         self.layoutWidget_2.setObjectName("layoutWidget_2")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget_2)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -611,7 +555,7 @@ class Ui_MainWindow(object):
         self.bt_loadFlightToUAV.setObjectName("bt_loadFlightToUAV")
         self.horizontalLayout.addWidget(self.bt_loadFlightToUAV)
         self.gb_flightInfo_2 = QtWidgets.QGroupBox(self.tab_planningMap)
-        self.gb_flightInfo_2.setGeometry(QtCore.QRect(743, 13, 330, 154))
+        self.gb_flightInfo_2.setGeometry(QtCore.QRect(745, 13, 330, 154))
         self.gb_flightInfo_2.setObjectName("gb_flightInfo_2")
         self.formLayoutWidget_5 = QtWidgets.QWidget(self.gb_flightInfo_2)
         self.formLayoutWidget_5.setGeometry(QtCore.QRect(10, 27, 311, 192))
@@ -720,6 +664,171 @@ class Ui_MainWindow(object):
         self.le_defaultAlt.setAlignment(QtCore.Qt.AlignCenter)
         self.le_defaultAlt.setObjectName("le_defaultAlt")
         self.horizontalLayout_3.addWidget(self.le_defaultAlt)
+        self.tw_waypoints = QtWidgets.QTableWidget(self.tab_planningMap)
+        self.tw_waypoints.setGeometry(QtCore.QRect(745, 220, 661, 491))
+        self.tw_waypoints.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.tw_waypoints.setStyleSheet("QTableWidget{\n"
+"    border-top: 1px solid lightgray;\n"
+"    outline: 0;\n"
+"    selection-background-color: white;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QTableWidget::item{\n"
+"    border-left: 1px solid lightgray;\n"
+"    border-bottom: 1px solid lightgray;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QTableWidget::last-child{\n"
+"    background-color: rgb(255, 255, 0);\n"
+"}\n"
+"\n"
+"QTableWidget::item:focus{\n"
+"    background-color:transparent;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: rgb(238, 238, 236);\n"
+"    padding: 4px;\n"
+"    font-size: 9pt;\n"
+"    height: 18px;\n"
+"    border-style: none;\n"
+"    border-bottom: 1px solid #fffff8;\n"
+"    border-left: 1px solid lightgray;\n"
+"}\n"
+"\n"
+"QHeaderView::section:horizontal\n"
+"{\n"
+"    border-top: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical {\n"
+"    border: none;\n"
+"    background:white;\n"
+"    border-radius: 12px;\n"
+"    width:6px;\n"
+"    margin: 0px 0px 0px 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::sub-line:vertical {\n"
+"    background-color: white;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical {\n"
+"    background-color: white;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
+"   background: gray;\n"
+"    min-height: 0px;\n"
+"    border-radius: 12px;\n"
+"}")
+        self.tw_waypoints.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.tw_waypoints.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.tw_waypoints.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.tw_waypoints.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.tw_waypoints.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.tw_waypoints.setShowGrid(False)
+        self.tw_waypoints.setRowCount(23)
+        self.tw_waypoints.setObjectName("tw_waypoints")
+        self.tw_waypoints.setColumnCount(10)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(5, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(6, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(7, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(8, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(9, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(10, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(11, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(12, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(13, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(14, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(15, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(16, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(17, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(18, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(19, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(20, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(21, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setVerticalHeaderItem(22, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setHorizontalHeaderItem(5, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setHorizontalHeaderItem(6, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setHorizontalHeaderItem(7, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setHorizontalHeaderItem(8, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tw_waypoints.setHorizontalHeaderItem(9, item)
+        self.tw_waypoints.horizontalHeader().setHighlightSections(True)
+        self.tw_waypoints.horizontalHeader().setSortIndicatorShown(False)
+        self.tw_waypoints.horizontalHeader().setStretchLastSection(False)
+        self.tw_waypoints.verticalHeader().setHighlightSections(True)
+        self.tw_waypoints.verticalHeader().setStretchLastSection(False)
+        self.line = QtWidgets.QFrame(self.tab_planningMap)
+        self.line.setGeometry(QtCore.QRect(736, 220, 20, 491))
+        self.line.setStyleSheet("")
+        self.line.setFrameShape(QtWidgets.QFrame.VLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
+        self.line_2 = QtWidgets.QFrame(self.tab_planningMap)
+        self.line_2.setGeometry(QtCore.QRect(1397, 220, 20, 491))
+        self.line_2.setStyleSheet("")
+        self.line_2.setFrameShape(QtWidgets.QFrame.VLine)
+        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_2.setObjectName("line_2")
+        self.line_3 = QtWidgets.QFrame(self.tab_planningMap)
+        self.line_3.setGeometry(QtCore.QRect(745, 710, 661, 3))
+        self.line_3.setStyleSheet("border-left: 1px solid lightgray;")
+        self.line_3.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_3.setObjectName("line_3")
+        self.line_4 = QtWidgets.QFrame(self.tab_planningMap)
+        self.line_4.setGeometry(QtCore.QRect(746, 220, 661, 3))
+        self.line_4.setStyleSheet("border-left: 1px solid lightgray;")
+        self.line_4.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_4.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_4.setObjectName("line_4")
         self.tw_menu.addTab(self.tab_planningMap, "")
         self.tab_parameters = QtWidgets.QWidget()
         self.tab_parameters.setObjectName("tab_parameters")
@@ -1152,6 +1261,72 @@ class Ui_MainWindow(object):
         self.le_wpRadius.setText(_translate("MainWindow", "30"))
         self.lb_defaultAlt.setText(_translate("MainWindow", "Varsayılan İrtifa:"))
         self.le_defaultAlt.setText(_translate("MainWindow", "30"))
+        item = self.tw_waypoints.verticalHeaderItem(0)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(1)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(2)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(3)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(4)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(5)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(6)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(7)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(8)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(9)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(10)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(11)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(12)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(13)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(14)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(15)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(16)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(17)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(18)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(19)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(20)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(21)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.verticalHeaderItem(22)
+        item.setText(_translate("MainWindow", "New Row"))
+        item = self.tw_waypoints.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "ID"))
+        item = self.tw_waypoints.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Komut"))
+        item = self.tw_waypoints.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Param1"))
+        item = self.tw_waypoints.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "Param2"))
+        item = self.tw_waypoints.horizontalHeaderItem(4)
+        item.setText(_translate("MainWindow", "Param3"))
+        item = self.tw_waypoints.horizontalHeaderItem(5)
+        item.setText(_translate("MainWindow", "Param4"))
+        item = self.tw_waypoints.horizontalHeaderItem(6)
+        item.setText(_translate("MainWindow", "Enlem"))
+        item = self.tw_waypoints.horizontalHeaderItem(7)
+        item.setText(_translate("MainWindow", "Boylam"))
+        item = self.tw_waypoints.horizontalHeaderItem(8)
+        item.setText(_translate("MainWindow", "İrtifa"))
+        item = self.tw_waypoints.horizontalHeaderItem(9)
+        item.setText(_translate("MainWindow", "Sil?"))
         self.tw_menu.setTabText(self.tw_menu.indexOf(self.tab_planningMap), _translate("MainWindow", "Uçuş Planı"))
         self.tw_menu.setTabText(self.tw_menu.indexOf(self.tab_parameters), _translate("MainWindow", "Parametre"))
         self.cb_resolution.setCurrentText(_translate("MainWindow", "        Çözünürlük", "asdsad"))

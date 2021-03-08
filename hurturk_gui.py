@@ -5,6 +5,7 @@ from collections import OrderedDict
 
 import geopy.distance
 from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QPainter
 from PyQt5.QtWidgets import *
 from PyQt5 import QtTest, QtCore
 from PyQt5.QtCore import *
@@ -215,31 +216,23 @@ class HurturkGui(QMainWindow):
         """
 
     def create_table(self):
-        self.ui.tw_waypoints.horizontalHeader().setVisible(True)
-        self.ui.tw_waypoints.horizontalHeader().setHighlightSections(False)
-        self.ui.tw_waypoints.verticalHeader().setVisible(True)
+        horizontal_header = self.ui.tw_waypoints.horizontalHeader()
+        horizontal_header.setHighlightSections(False)
+        self.ui.tw_waypoints.setColumnWidth(0, 50)
+        self.ui.tw_waypoints.setColumnWidth(1, 110)
+        self.ui.tw_waypoints.setColumnWidth(2, 60)
+        self.ui.tw_waypoints.setColumnWidth(3, 60)
+        self.ui.tw_waypoints.setColumnWidth(4, 60)
+        self.ui.tw_waypoints.setColumnWidth(5, 60)
+        self.ui.tw_waypoints.setColumnWidth(6, 70)
+        self.ui.tw_waypoints.setColumnWidth(7, 70)
+        self.ui.tw_waypoints.setColumnWidth(8, 60)
+        self.ui.tw_waypoints.setColumnWidth(9, 63)
+
+        vertical_header = self.ui.tw_waypoints.verticalHeader()
+        vertical_header.hide()
 
         self.ui.tw_waypoints.setRowCount(1)
-        self.ui.tw_waypoints.setColumnCount(9)
-
-        self.ui.tw_waypoints.setHorizontalHeaderLabels(
-            ['Komut', 'Param1', 'Param2', 'Param3', 'Param4',
-             'Enlem', 'Boylam', 'İrtifa', 'Sil?'])
-
-        self.ui.tw_waypoints.setColumnWidth(0, 110)
-
-        self.ui.tw_waypoints.verticalHeader().setSectionResizeMode(QHeaderView.Fixed)
-        self.ui.tw_waypoints.verticalHeader().setDefaultSectionSize(27)
-
-        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
-        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(2, QHeaderView.Stretch)
-        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(3, QHeaderView.Stretch)
-        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(4, QHeaderView.Stretch)
-        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(5, QHeaderView.Stretch)
-        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(6, QHeaderView.Stretch)
-        self.ui.tw_waypoints.horizontalHeader().setSectionResizeMode(7, QHeaderView.Stretch)
-        self.ui.tw_waypoints.setColumnWidth(8, 50)
-        self.ui.tw_waypoints.setItemDelegate(AlignDelegate())
 
     def show_time(self):
         now_time = datetime.datetime.now()
@@ -332,25 +325,35 @@ class HurturkGui(QMainWindow):
             delete_button.clicked.connect(self.delete_marker)
 
             self.ui.tw_waypoints.setRowCount(len(self.markers.keys()))
-            self.ui.tw_waypoints.setCellWidget(len(self.markers.keys()) - 1, 0, mission_selection)
-            self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 1,
-                                         QTableWidgetItem(self.markers[self.marker.layerId]["param1"]))
+            self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 0,
+                                         QTableWidgetItem(str(self.markers[self.marker.layerId]["row_no"])))
+            self.ui.tw_waypoints.setCellWidget(len(self.markers.keys()) - 1, 1, mission_selection)
             self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 2,
-                                         QTableWidgetItem(self.markers[self.marker.layerId]["param2"]))
+                                         QTableWidgetItem(self.markers[self.marker.layerId]["param1"]))
             self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 3,
-                                         QTableWidgetItem(self.markers[self.marker.layerId]["param3"]))
+                                         QTableWidgetItem(self.markers[self.marker.layerId]["param2"]))
             self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 4,
-                                         QTableWidgetItem(self.markers[self.marker.layerId]["param4"]))
+                                         QTableWidgetItem(self.markers[self.marker.layerId]["param3"]))
             self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 5,
-                                         QTableWidgetItem(f'{self.markers[self.marker.layerId]["enlem"]:.4f}'))
+                                         QTableWidgetItem(self.markers[self.marker.layerId]["param4"]))
             self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 6,
-                                         QTableWidgetItem(f'{self.markers[self.marker.layerId]["boylam"]:.4f}'))
+                                         QTableWidgetItem(f'{self.markers[self.marker.layerId]["enlem"]:.4f}'))
             self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 7,
+                                         QTableWidgetItem(f'{self.markers[self.marker.layerId]["boylam"]:.4f}'))
+            self.ui.tw_waypoints.setItem(len(self.markers.keys()) - 1, 8,
                                          QTableWidgetItem(str(self.markers[self.marker.layerId]["irtifa"])))
-            self.ui.tw_waypoints.setCellWidget(len(self.markers.keys()) - 1, 8, delete_button)
+            self.ui.tw_waypoints.setCellWidget(len(self.markers.keys()) - 1, 9, delete_button)
 
-            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 5).setFlags(Qt.ItemIsEditable)
+            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 0).setTextAlignment(Qt.AlignCenter)
+            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 2).setTextAlignment(Qt.AlignCenter)
+            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 3).setTextAlignment(Qt.AlignCenter)
+            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 4).setTextAlignment(Qt.AlignCenter)
+            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 5).setTextAlignment(Qt.AlignCenter)
+            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 6).setTextAlignment(Qt.AlignCenter)
             self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 6).setFlags(Qt.ItemIsEditable)
+            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 7).setTextAlignment(Qt.AlignCenter)
+            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 7).setFlags(Qt.ItemIsEditable)
+            self.ui.tw_waypoints.item(len(self.markers.keys()) - 1, 8).setTextAlignment(Qt.AlignCenter)
 
             if len(self.markers.items()) > 1:
                 self.draw_polyline()
@@ -496,8 +499,3 @@ class HurturkGui(QMainWindow):
         self.window().move(self.window().x() + delta.x(), self.window().y() + delta.y())  # başlangıç noktası kaydırılır
         self.oldPosition = event.globalPos()
 
-
-class AlignDelegate(QItemDelegate):
-    def paint(self, painter, option, index):
-        option.displayAlignment = QtCore.Qt.AlignCenter
-        QItemDelegate.paint(self, painter, option, index)

@@ -995,73 +995,10 @@ QPushButton:active {
        </size>
       </property>
      </widget>
-     <widget class="QTableWidget" name="tw_waypoints">
-      <property name="geometry">
-       <rect>
-        <x>745</x>
-        <y>220</y>
-        <width>661</width>
-        <height>491</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QTableWidget{
-	border-top: 1px solid lightgray;
-	border-right: 1px solid lightgray;
-	outline: 0;
-	selection-background-color: white;
-	color: black;
-}
-
-QTableCornerButton {
-    background-color: rgba(255, 255, 255, 0);
-}
-
-QTableWidget::item{
-	border-left: 1px solid lightgray;
-	border-bottom: 1px solid lightgray;
-	color: black;
-}
-
-QTableWidget::item:focus{
-	background-color:transparent;
-	color: black;
-}
-
-QHeaderView::section {
-    background-color: rgb(238, 238, 236);
-    padding: 4px;
-    font-size: 9pt;
-	height: 18px;
-    border-style: none;
-    border-bottom: 1px solid #fffff8;
-	border-left: 1px solid lightgray;
-}
-
-QHeaderView::section:horizontal
-{
-    border-top: 1px solid #fffff8;
-}
-
-QScrollBar:vertical {
-    border: none;
-    background:white;
-	border-radius: 12px;
-    width:6px;
-    margin: 0px 0px 0px 0px;
-}
-
-QScrollBar::handle:vertical {
-   background: gray;
-    min-height: 0px;
-	border-radius: 12px;
-}</string>
-      </property>
-     </widget>
      <widget class="QWidget" name="layoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>744</x>
+        <x>746</x>
         <y>176</y>
         <width>661</width>
         <height>34</height>
@@ -1229,7 +1166,7 @@ QPushButton:active {
      <widget class="QGroupBox" name="gb_flightInfo_2">
       <property name="geometry">
        <rect>
-        <x>743</x>
+        <x>745</x>
         <y>13</y>
         <width>330</width>
         <height>154</height>
@@ -1542,6 +1479,229 @@ QPushButton:active {
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QTableWidget" name="tw_waypoints">
+      <property name="geometry">
+       <rect>
+        <x>745</x>
+        <y>220</y>
+        <width>661</width>
+        <height>491</height>
+       </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableWidget{
+	border-top: 1px solid lightgray;
+	outline: 0;
+	selection-background-color: white;
+	color: black;
+}
+
+QTableWidget::item{
+	border-left: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	color: black;
+}
+
+QTableWidget::last-child{
+	background-color: rgb(255, 255, 0);
+}
+
+QTableWidget::item:focus{
+	background-color:transparent;
+	color: black;
+}
+
+QHeaderView::section {
+    background-color: rgb(238, 238, 236);
+    padding: 4px;
+    font-size: 9pt;
+	height: 18px;
+    border-style: none;
+    border-bottom: 1px solid #fffff8;
+	border-left: 1px solid lightgray;
+}
+
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid #fffff8;
+}
+
+QScrollBar:vertical {
+    border: none;
+    background:white;
+	border-radius: 12px;
+    width:6px;
+    margin: 0px 0px 0px 0px;
+}
+
+QScrollBar::sub-line:vertical {
+	background-color: white;
+}
+
+QScrollBar::add-line:vertical {
+	background-color: white;
+}
+
+QScrollBar::handle:vertical {
+   background: gray;
+    min-height: 0px;
+	border-radius: 12px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
+      </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
+      <property name="rowCount">
+       <number>0</number>
+      </property>
+      <attribute name="horizontalHeaderHighlightSections">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderHighlightSections">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Komut</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Param1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Param2</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Param3</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Param4</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Enlem</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Boylam</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>İrtifa</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Sil?</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>736</x>
+        <y>220</y>
+        <width>20</width>
+        <height>491</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="Line" name="line_2">
+      <property name="geometry">
+       <rect>
+        <x>1397</x>
+        <y>220</y>
+        <width>20</width>
+        <height>491</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="Line" name="line_3">
+      <property name="geometry">
+       <rect>
+        <x>745</x>
+        <y>710</y>
+        <width>661</width>
+        <height>3</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-left: 1px solid lightgray;</string>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="Line" name="line_4">
+      <property name="geometry">
+       <rect>
+        <x>746</x>
+        <y>220</y>
+        <width>661</width>
+        <height>3</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-left: 1px solid lightgray;</string>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_parameters">

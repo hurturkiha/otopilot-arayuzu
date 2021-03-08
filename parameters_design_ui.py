@@ -70,8 +70,7 @@ class Ui_Form(object):
         self.tw_parameters.setGeometry(QtCore.QRect(295, 60, 1114, 656))
         self.tw_parameters.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.tw_parameters.setStyleSheet("QTableWidget{\n"
-"    border-top: 1px solid lightgray;\n"
-"    border-right: 1px solid lightgray;\n"
+"    border: 1px solid lightgray;\n"
 "    outline: 0;\n"
 "    selection-background-color: white;\n"
 "}\n"

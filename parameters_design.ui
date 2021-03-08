@@ -194,8 +194,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QTableWidget{
-	border-top: 1px solid lightgray;
-	border-right: 1px solid lightgray;
+	border: 1px solid lightgray;
 	outline: 0;
 	selection-background-color: white;
 }
