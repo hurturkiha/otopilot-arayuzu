@@ -76,7 +76,6 @@ class Autopilot():
     def flight_time(self):
         self.ui.le_flightTime.setText(f"{self.second // 60}:{self.second % 60} dk")
         self.ui.le_flightTime_2.setText(f"{self.second // 60}:{self.second % 60} dk")
-        self.ui.le_totalFlightTime.setText(f"{(self.second+ 1000) // 60}:{(self.second+1000) % 60} dk")
 
         self.second += 1
 

@@ -14,6 +14,7 @@
     <file>icons/minimize.png</file>
   </qresource>
   <qresource prefix="team">
+    <file>icons/temp_camera_2.png</file>
     <file>icons/temp_camera.png</file>
     <file>icons/team-logo.png</file>
   </qresource>

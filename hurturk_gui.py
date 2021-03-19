@@ -53,9 +53,6 @@ class SplashScreen(QMainWindow):
 
 
 class HurturkGui(QMainWindow):
-    """
-    Bu sınıf, yükleme ekranı sonrası arayüzü oluşturur.
-    """
 
     def __init__(self):
         super().__init__()
@@ -63,13 +60,11 @@ class HurturkGui(QMainWindow):
         self.ui = design_ui.Ui_MainWindow()
         self.ui.setupUi(self)
 
-        # Başlangıçta ana sayfadan başlamayı sağlar.
         self.ui.tw_menu.setCurrentIndex(0)
         self.ui.tw_menu.currentChanged.connect(self.changed_tab)
         self.oldPosition = self.window().pos()
 
         self.ui.bt_close.clicked.connect(self.close_window)
-        # self.ui.bt_maximize.clicked.connect(self.maximize_window)
         self.ui.bt_minimize.clicked.connect(self.minimize_window)
         self.ui.le_wpRadius.textChanged.connect(self.changed_wp_rad)
         self.ui.bt_saveToFile.clicked.connect(self.save_missions)
@@ -77,7 +72,6 @@ class HurturkGui(QMainWindow):
         self.ui.cb_simulation.stateChanged.connect(self.isSimulation)
         self.ui.bt_connect.clicked.connect(self.connect_uav)
 
-        # Parametre sekmesi widget olarak eklenir.
         self.parameters_widget = ParameterWidget()
         self.ui.vl_parameters.addWidget(self.parameters_widget)
 
@@ -364,7 +358,7 @@ class HurturkGui(QMainWindow):
         self.ui.vbl_miniMap.addWidget(self.planning_map_widget)
 
         self.planning_map = L.map(self.planning_map_widget)
-        self.planning_map.setView([40.215725, 29.080278], 18)
+        self.planning_map.setView([40.215725, 29.080278], 17)
 
         self.tile_layer = L.tileLayer(
             'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')

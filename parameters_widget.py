@@ -41,7 +41,8 @@ class ParameterWidget(QWidget):
 
         horizontal_header = self.ui.tw_parameters.horizontalHeader()
         horizontal_header.setHighlightSections(False)
-        horizontal_header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+
+        self.ui.tw_parameters.setColumnWidth(0, 150)
         horizontal_header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
         horizontal_header.setSectionResizeMode(2, QHeaderView.Stretch)
 

@@ -1,36 +1,36 @@
 {
-  "parametre_ailesi1": {
-    "parametre": {
-      "aciklama": "aaa",
-      "deger": "aaaa",
-      "varsayilan_deger": "aaa"
+  "Parametre Ailesi 1": {
+    "Parametre 1-1": {
+      "aciklama": "---",
+      "deger": "0",
+      "varsayilan_deger": "---"
     },
-    "parametre2": {
-      "aciklama": "aaa",
-      "deger": "aaaa",
-      "varsayilan_deger": "aaa"
+    "Parametre 1-2": {
+      "aciklama": "---",
+      "deger": "0",
+      "varsayilan_deger": "---"
     },
-    "parametre3": {
-      "aciklama": "aaa",
-      "deger": "aaaa",
-      "varsayilan_deger": "aaa"
+    "Parametre 1-3": {
+      "aciklama": "---",
+      "deger": "0",
+      "varsayilan_deger": "---"
     }
   },
-  "parametre_ailesi2": {
-    "parametre": {
-      "aciklama": "aaa",
-      "deger": "aaaa",
-      "varsayilan_deger": "aaa"
+  "Parametre Ailesi 2": {
+    "Parametre 2-1": {
+      "aciklama": "---",
+      "deger": "0",
+      "varsayilan_deger": "---"
     },
-    "parametre2": {
-      "aciklama": "aaa",
-      "deger": "aaaa",
-      "varsayilan_deger": "aaa"
+    "Parametre 2-2": {
+      "aciklama": "---",
+      "deger": "0",
+      "varsayilan_deger": "---"
     },
-    "parametre3": {
-      "aciklama": "aaa",
-      "deger": "aaaa",
-      "varsayilan_deger": "aaa"
+    "Parametre 2-3": {
+      "aciklama": "---",
+      "deger": "0",
+      "varsayilan_deger": "---"
     }
   }
 }
