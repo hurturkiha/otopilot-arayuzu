@@ -95,7 +95,7 @@
     <rect>
      <x>65</x>
      <y>20</y>
-     <width>221</width>
+     <width>244</width>
      <height>29</height>
     </rect>
    </property>
@@ -163,15 +163,30 @@
      </disabled>
     </palette>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid #ababab;</string>
+   </property>
+   <property name="frame">
+    <bool>false</bool>
+   </property>
   </widget>
   <widget class="QListWidget" name="lw_parameterFamily">
    <property name="geometry">
     <rect>
      <x>8</x>
      <y>60</y>
-     <width>278</width>
+     <width>291</width>
      <height>656</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid #ababab;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
    </property>
    <property name="verticalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -183,9 +198,9 @@
   <widget class="QTableWidget" name="tw_parameters">
    <property name="geometry">
     <rect>
-     <x>295</x>
+     <x>318</x>
      <y>60</y>
-     <width>1114</width>
+     <width>1091</width>
      <height>656</height>
     </rect>
    </property>
@@ -321,7 +336,7 @@ QScrollBar::handle:vertical {
   <widget class="QPushButton" name="bt_resetParameters">
    <property name="geometry">
     <rect>
-     <x>296</x>
+     <x>318</x>
      <y>20</y>
      <width>171</width>
      <height>29</height>
@@ -360,7 +375,7 @@ QPushButton:active {
   <widget class="QPushButton" name="bt_saveParameters">
    <property name="geometry">
     <rect>
-     <x>479</x>
+     <x>501</x>
      <y>20</y>
      <width>171</width>
      <height>29</height>
@@ -399,7 +414,7 @@ QPushButton:active {
   <widget class="QPushButton" name="bt_loadParameters">
    <property name="geometry">
     <rect>
-     <x>659</x>
+     <x>681</x>
      <y>20</y>
      <width>231</width>
      <height>29</height>
@@ -438,14 +453,14 @@ QPushButton:active {
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>286</x>
+     <x>318</x>
      <y>60</y>
-     <width>20</width>
+     <width>1</width>
      <height>656</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">border: 1px solid #ababab;</string>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
@@ -454,11 +469,14 @@ QPushButton:active {
   <widget class="Line" name="line_3">
    <property name="geometry">
     <rect>
-     <x>296</x>
-     <y>51</y>
-     <width>1111</width>
-     <height>21</height>
+     <x>318</x>
+     <y>60</y>
+     <width>1091</width>
+     <height>1</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid #ababab;</string>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -467,14 +485,14 @@ QPushButton:active {
   <widget class="Line" name="line_2">
    <property name="geometry">
     <rect>
-     <x>1399</x>
+     <x>1408</x>
      <y>60</y>
-     <width>20</width>
+     <width>1</width>
      <height>656</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">border: 1px solid #ababab;</string>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
@@ -483,16 +501,30 @@ QPushButton:active {
   <widget class="Line" name="line_4">
    <property name="geometry">
     <rect>
-     <x>296</x>
-     <y>706</y>
-     <width>1111</width>
-     <height>21</height>
+     <x>318</x>
+     <y>716</y>
+     <width>1091</width>
+     <height>1</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid #ababab;</string>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <zorder>tw_parameters</zorder>
+  <zorder>lb_search</zorder>
+  <zorder>le_search</zorder>
+  <zorder>lw_parameterFamily</zorder>
+  <zorder>bt_resetParameters</zorder>
+  <zorder>bt_saveParameters</zorder>
+  <zorder>bt_loadParameters</zorder>
+  <zorder>line_2</zorder>
+  <zorder>line_3</zorder>
+  <zorder>line</zorder>
+  <zorder>line_4</zorder>
  </widget>
  <resources/>
  <connections/>

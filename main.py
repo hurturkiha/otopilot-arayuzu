@@ -1,3 +1,5 @@
+# created by Hurturk UAV Team (2021)
+
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore
@@ -14,7 +16,6 @@ if splash_enabled:
     widget = SplashScreen()
 else:
     widget = HurturkGui()
-
 widget.setWindowTitle("Hürtürk Otopilot Arayüzü")
 widget.setWindowFlags(QtCore.Qt.FramelessWindowHint)  # title bar'ı kaldırır
 widget.show()
